@@ -1,0 +1,159 @@
+p: &p
+  type: http
+  interval: 86400
+  health-check:
+    enable: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+
+classical: &classical
+  type: http
+  behavior: classical
+  interval: 86400
+
+domain: &domain
+  type: http
+  behavior: domain
+  interval: 86400
+
+ipcidr: &ipcidr
+  type: http
+  behavior: ipcidr
+  interval: 86400
+
+ipv6: true
+keep-alive-interval: 10
+unified-delay: true
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+geodata-mode: true
+geodata-loader: standard
+
+
+proxy-providers:
+  provider1:
+    <<: *p
+    url: ""
+
+proxies:
+- name: "direct"
+  type: direct
+
+proxy-groups:
+  - name: proxy
+    type: select
+    proxies: 
+    - hk
+    - us
+    - sg
+    - jp
+
+  - name: telegram
+    type: select
+    proxies: 
+    - hk
+    - us
+    - sg
+    - jp
+
+  - name: google
+    type: select
+    proxies: 
+    - hk
+    - us
+    - sg
+    - jp
+
+  - name: openai
+    type: select
+    proxies: 
+    - hk
+    - us
+    - sg
+    - jp
+
+  - name: hk
+    type: select
+    proxies:
+    include-all: true
+    filter: 🇭🇰
+
+  - name: us
+    type: select
+    proxies:
+    include-all: true
+    filter: 🇺🇸
+
+  - name: sg
+    type: select
+    proxies:
+    include-all: true
+    filter: 🇸🇬
+
+  - name: jp
+    type: select
+    proxies:
+    include-all: true
+    filter: 🇯🇵
+
+rules:
+  - RULE-SET,httpdns,REJECT
+  - RULE-SET,private_domain,direct
+  - RULE-SET,private_ip,direct
+  - RULE-SET,telegram_domain,telegram
+  - RULE-SET,telegram_ip,telegram
+  - RULE-SET,speedtest,proxy
+  - RULE-SET,cn_domain,direct
+  - RULE-SET,cn_ip,direct
+  - GEOSITE,google,google
+  - GEOSITE,openai,openai
+  - GEOSITE,bilibili,direct
+  - GEOSITE,CN,direct
+  - GEOIP,CN,direct
+  - MATCH,proxy
+
+rule-providers:
+  httpdns:
+    <<: *classical
+    format: text
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/classical/httpdns.list"
+
+  telegram_ip:
+    <<: *classical
+    format: text
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/classical/telegram.list"
+
+  telegram_domain:
+    <<: *classical
+    format: text
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/classical/telegram.list"
+
+  private_ip:
+    <<: *classical
+    format: text
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/classical/private.list"
+
+  private_domain:
+    <<: *classical
+    format: text
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/classical/private.list"
+
+  cn_ip:
+    <<: *classical
+    format: text
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/classical/cn.list"
+
+  cn_domain:
+    <<: *classical
+    format: text
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/classical/cn.list"
+
+  speedtest:
+    <<: *classical
+    format: text
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/classical/speedtest.list"
