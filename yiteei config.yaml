@@ -1,4 +1,4 @@
-#SUBSCRIBED https://raw.githubusercontent.com/yiteei/Clash/refs/heads/Meta/config/Subscription-Userinfo
+#SUBSCRIBED https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/config/Subscription-Userinfo
 log-level: silent # 日志等级
 find-process-mode: off # 查找进程,不建议使用
 mode: rule # 运行模式,暂不支持 script
@@ -26,6 +26,7 @@ external-controller: '127.0.0.1:9494' # API 监听地址
 secret: 'cat' # API 的访问密钥
 external-controller-cors: # API CORS 标头配置
   allow-origins: # 允许哪些前端页面的域名访问 API
+    - 'https://zashboard.pages.dev'
     - 'https://board.zash.run.place'
   allow-private-network: true
 
@@ -60,24 +61,24 @@ sniffer:
     - 'Mijia Cloud'
     - 'dlg.io.mi.com'
   skip-dst-address:
-    - 0.0.0.0/8
-    - 10.0.0.0/8
-    - 100.64.0.0/10
-    - 127.0.0.0/8
-    - 169.254.0.0/16
-    - 172.16.0.0/12
-    - 192.0.0.0/24
-    - 192.0.2.0/24
-    - 192.88.99.0/24
-    - 192.168.0.0/16
-    - 198.18.0.0/15
-    - 198.51.100.0/24
-    - 203.0.113.0/24
-    - 224.0.0.0/3
-    - ::/127
-    - fc00::/7
-    - fe80::/10
-    - ff00::/8
+    - '0.0.0.0/8'
+    - '10.0.0.0/8'
+    - '100.64.0.0/10'
+    - '127.0.0.0/8'
+    - '169.254.0.0/16'
+    - '172.16.0.0/12'
+    - '192.0.0.0/24'
+    - '192.0.2.0/24'
+    - '192.88.99.0/24'
+    - '192.168.0.0/16'
+    - '198.18.0.0/15'
+    - '198.51.100.0/24'
+    - '203.0.113.0/24'
+    - '224.0.0.0/3'
+    - '::/127'
+    - 'fc00::/7'
+    - 'fe80::/10'
+    - 'ff00::/8'
 
 hosts:
   # 支持单域名多 IP,格式为数组; 支持域名通配符,不使用通配符的域名优先级高于使用通配符的域名
@@ -98,10 +99,12 @@ dns:
   ipv6: true # false 将返回 AAAA 的空结果
   enhanced-mode: redir-host # DNS 处理模式 fake-ip/redir-host/normal,Meta 回滚了 Redir Host 部分代码,仍然保留 Clash v1.70 以前的 Redir Host 模式的域名传递行为
   default-nameserver: ['quic://223.6.6.6', '114.114.115.115', '218.30.118.6'] # 用于解析 DNS 服务器 的域名,必须为 IP类型,可为加密 DNS
+  # fake-ip-filter: # 根据 fake-ip 模式返回 fake-ip ,默认 blacklist 模式 (即匹配的不返回,其余返回)
+  #   - 'rule-set:site_flexi-fake-ip-filter,site_private'
   proxy-server-nameserver: ['https://223.5.5.5/dns-query#ecs=223.6.6.0/24&ecs-override=true', 'https://doh.pub/dns-query#ecs=223.6.6.0/24&ecs-override=true']
   # 用于节点的域名解析,其他 DNS 如需过代理查询时则配置该项以防出现鸡蛋问题
   nameserver-policy:
-    'rule-set:site_cn,site_geolocation-cn,site_private': ['https://223.6.6.6/dns-query#&ecs=223.6.6.0/24&ecs-override=true', 'https://doh.pub/dns-query#ecs=223.6.6.0/24&ecs-override=true']
+    'rule-set:site_cn,site_private': ['https://223.6.6.6/dns-query#&ecs=223.6.6.0/24&ecs-override=true', 'https://doh.pub/dns-query#ecs=223.6.6.0/24&ecs-override=true']
   nameserver: ['https://208.67.220.2/dns-query#ecs=1.0.0.0/24&ecs-override=true&Proxy', 'https://8.8.4.4/dns-query#ecs=1.0.0.0/24&ecs-override=true&Proxy'] # 默认域名解析,如不配置 fallback/proxy-server-nameserver,则都由 nameserver 解析
   direct-nameserver: ['https://223.6.6.6/dns-query#&ecs=223.6.6.0/24&ecs-override=true', 'https://doh.pub/dns-query#ecs=223.6.6.0/24&ecs-override=true']
 
@@ -123,7 +126,7 @@ proxy-providers-anchor:
   - &health_check { health-check: { enable: true, url: 'https://www.google.com/generate_204', expected-status: '204', interval: 150 } } # 延迟检测
   - &header { header: { User-Agent: ['mihomo/9.99.9 clash.meta/9.99.9 ClashMeta/9.99.9 FlClash/9.99.9 clash-verge/9.99.9'] } } # UA
   - &update { proxy: 'Update', interval: 43200 } # 更新 provider 使用的节点或策略组/Update provider 的间隔,单位 s  Tip: 设置的过于小可能被机场 ban
-  - &filter_exclude { exclude-type: 'http|socks5|trojan|anytls|vmess|ssh', exclude-filter: '(?:流量|期|知|告|入|群|邀|返|循环|官|客|站|址|获|订|机场|下次|版本|备用|已|联系|邮|服务|工单|贩卖|导航|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|作者|(?i:\b(?:USE|USED|TG|TOTAL|EXPIRE|EMAIL|PANEL|CHANNEL|AUTHOR|UPDATE)\b)|\b\d{4}-\d{2}-\d{2}\b|\d+G)' } # 引入筛选/排除,使用筛选可能会在一定程度上增加CPU占用/转发延迟,尤其是使用较为复杂正则的情况下
+  - &filter_exclude { exclude-type: 'http|socks5|trojan|anytls|vmess|ssh', exclude-filter: '(?:流量|期|知|告|入|群|邀|返|循环|官|客|站|址|获|订|机场|下次|版本|备用|已|联系|邮|服务|工单|贩卖|导航|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|作者|(?i:\b(?:use|used|tg|total|expire|email|panel|channel|website|author|update)\b)|\b\d{4}-\d{2}-\d{2}\b|\d+G)' } # 引入筛选/排除,使用筛选可能会在一定程度上增加CPU占用/转发延迟,尤其是使用较为复杂正则的情况下
   - &override { udp: true } # 覆写
 
 proxy-providers:
@@ -174,7 +177,7 @@ proxy-groups-anchor:
     - &type_lb-rr { type: load-balance, strategy: round-robin, url: 'https://www.google.com/generate_204', expected-status: '204', interval: 150 }
     # - &type_lb-ss { type: load-balance,strategy: sticky-sessions,url: 'https://www.google.com/generate_204',expected-status: '204',interval: 150 }
   proxies_anchor:
-    # - &proxies_default { proxies: ['PASS', 'Proxy', 'Local', '香港', '台湾', '日本', '狮城', '英国', '美国'] }
+    - &proxies_default { proxies: ['PASS', 'Proxy', 'Local', '香港', '台湾', '日本', '狮城', '英国', '美国'] }
     - &proxies_direct { proxies: ['Local', 'Proxy', 'PASS', '香港', '台湾', '日本', '狮城', '英国', '美国'] }
     - &proxies_proxy { proxies: ['Proxy', 'Local', 'PASS', '香港', '台湾', '日本', '狮城', '英国', '美国'] }
     - &proxies_out { proxies: ['香港', '台湾', '日本', '狮城', '英国', '美国'] }
@@ -205,7 +208,7 @@ proxy-groups:
   # 策略组可以包含多个代理,或多个远程代理集; 不包含任何代理的策略组,会被当作为 DIRECT 策略处理; 如策略组代理来自远程代理集时,则使用 proxy-providers 的 health-check
   - { name: 'Proxy', type: select, proxies: ['Fallback', 'Load balance', 'Local', '香港', '台湾', '日本', '狮城', '英国', '美国'], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png' }
   - { name: 'Local', type: select, url: 'https://connectivitycheck.platform.hicloud.com/generate_204', expected-status: '204', interval: 0, proxies: ['DIRECT', '以太网', 'WLAN', '以太网 + WLAN', 'wlan0 + wlan1', 'data0 + wlan0', 'data0 + wlan1', 'data1 + wlan0', 'data1 + wlan1', 'data2 + wlan0', 'data2 + wlan1', 'data3 + wlan0', 'data3 + wlan1'], use: ['Baidu'], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China_Map.png' }
-  - { name: 'NoChina', type: select, <<: *proxies_proxy, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png' }
+  - { name: 'FlexiRule', type: select, <<: *proxies_default, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Heart.png' }
   - { name: 'Message', type: select, <<: *proxies_direct, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png' }
   - { name: 'Telegram', type: select, <<: *proxies_proxy, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png' }
   - { name: 'WeChat', type: select, <<: *proxies_proxy, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/WeChat.png' }
@@ -214,7 +217,7 @@ proxy-groups:
   - { name: 'OneDrive', type: select, <<: *proxies_direct, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png' }
   # - { name: 'LModel',type: select,url: 'https://api.openai.com/cdn-cgi/trace',<<: [ *proxies_proxy ],icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ChatGPT.png' }
   - { name: 'GameCN', type: select, <<: *proxies_direct, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png' }
-  - { name: 'BiliCDN', type: select, <<: *proxies_reject, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png' }
+  - { name: 'Tracker', type: select, <<: *proxies_direct, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Server.png' }
   - { name: 'WebRTC', type: select, <<: *proxies_reject, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Area.png' }
   # - { name: 'QUIC',type: select,proxies: [ PASS,REJECT-DROP ],icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png' }
   # - { name: 'disable-udp',type: select,disable-udp:true,<<: *proxies_out ,icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png'}
@@ -275,132 +278,64 @@ rule-providers-anchor:
 rule-providers:
   # 对于去广告,按 IP 地理信息分流等需要大量规则的场景,建议使用 domain 或 ipcidr 类型的规则集合,这能有效降低内存占用并提高匹配速度
   # 不建议使用大量 classical 类型的规则集合。此类规则只能进行顺序匹配，会显著增加匹配耗时和内存占用
-  site_category-httpdns-cn: { <<: *rule_domain, path: './rule_providers/domain/category-httpdns-cn', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-httpdns-cn.mrs' }
+  # site_flexi-fake-ip-filter:
+  #   type: inline
+  #   <<: *rule_domain
+  #   payload:
+  #     # QQ
+  #     - 'localhost.*.qq.com'
+  #     # 路由
+  #     - 'tplogin.cn'
+  #     - 'routerlogin.com'
+  #     - 'router.asus.com'
+  #     - 'miwifi.com'
+  #     - 'luyou.360.cn'
+  #     - 'melogin.cn'
+  #     - 'tendawifi.com'
+  #     - 'jdcloudwifi.com'
+  #     - 'zte.home'
+  #     - 'p.to'
+  #     # NTP
+  #     - '+.ntp.*'
+  #     - '+.ntp.*.*'
+  #     - '+.ntp*.*.*'
+  #     - '+.ntp.*.*.*'
+  #     - '+.ntp.*.*.*.*'
+  #     - '+.time.*'
+  #     - '+.time.*.*'
+  #     - '+.time*.*.*'
+  #     - '+.*time.*.*'
+  #     - '+.time.*.*.*'
   # site_ads: { <<: *rule_domain, path: './rule_providers/domain/category-ads-all', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs' }
-  site_ads: { <<: *rule_domain, path: './rule_providers/domain/dns-blocklists-normal', url: 'https://raw.githubusercontent.com/yiteei/Clash/refs/heads/Meta/rules/site/dns-blocklists-normal.mrs' }
   site_private: { <<: *rule_domain, path: './rule_providers/domain/private', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs' }
+  site_ads: { <<: *rule_domain, path: './rule_providers/domain/dns-blocklists-normal', url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/dns-blocklists-normal.mrs' }
+  site_httpdns: { <<: *rule_domain, path: './rule_providers/domain/httpdns', url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/httpdns.mrs' }
+  site_flexirule:
+    type: inline
+    <<: *rule_domain
+    payload:
+      - '+.deepseek.com'
   site_googlefcm: { <<: *rule_domain, path: './rule_providers/domain/googlefcm', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs' }
   site_telegram: { <<: *rule_domain, path: './rule_providers/domain/telegram', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs' }
   site_wechat:
     type: inline
     <<: *rule_domain
     payload:
-      - short.weixin.qq.com
-      - +short.weixin.qq.com
-      - long.weixin.qq.com
-      - +long.weixin.qq.com
+      - 'short.weixin.qq.com'
+      - '+short.weixin.qq.com'
+      - 'long.weixin.qq.com'
+      - '+long.weixin.qq.com'
   site_youtube: { <<: *rule_domain, path: './rule_providers/domain/youtube', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs' }
   site_onedrive: { <<: *rule_domain, path: './rule_providers/domain/onedrive', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/onedrive.mrs' }
   site_category-games@cn: { <<: *rule_domain, path: './rule_providers/domain/category-games@cn', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games@cn.mrs' }
-  site_gfw: { <<: *rule_domain, path: './rule_providers/domain/gfw', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs' }
-  site_geolocation-cn: { <<: *rule_domain, path: './rule_providers/domain/geolocation-cn', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-cn.mrs' }
-  site_geolocation-!cn: { <<: *rule_domain, path: './rule_providers/domain/geolocation-!cn', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.mrs' }
-  site_cn: { <<: *rule_domain, path: './rule_providers/domain/cn', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs' }
+  site_tracker: { <<: *rule_domain, path: './rule_providers/domain/tracker', url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/tracker.mrs' }
+  site_!cn: { <<: *rule_domain, path: './rule_providers/domain/!cn', url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/!cn.mrs' }
+  site_cn: { <<: *rule_domain, path: './rule_providers/domain/cn', url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/cn.mrs' }
   ip_private: { <<: *rule_ipcidr, path: './rule_providers/ipcidr/private', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs' }
+  ip_httpdns: { <<: *rule_ipcidr, path: './rule_providers/ipcidr/httpdns', url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/ip/httpdns.mrs' }
   ip_telegram: { <<: *rule_ipcidr, path: './rule_providers/ipcidr/telegram', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs' }
+  ip_tracker: { <<: *rule_ipcidr, path: './rule_providers/ipcidr/tracker', url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/ip/tracker.mrs' }
   ip_cn: { <<: *rule_ipcidr, path: './rule_providers/ipcidr/cn', url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs' }
-  classical_httpdns:
-    # 来源 https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E6%8B%A6%E6%88%AAHTTPDNS.sgmodule
-    type: inline
-    <<: *rule_classical
-    payload:
-      # 阿里巴巴
-      - DOMAIN,httpdns.alicdn.com
-      # 阿里云
-      - DOMAIN,httpdns-api.aliyuncs.com
-      - DOMAIN,httpdns-sc.aliyuncs.com
-      - IP-CIDR,203.107.1.0/24
-      # 淘宝
-      - DOMAIN,httpdns.danuoyi.tbcache.com
-      # 腾讯云
-      - IP-CIDR,119.29.29.98/32
-      - IP-CIDR,119.29.29.99/32
-      # 网易
-      - DOMAIN,httpdns.music.163.com
-      - DOMAIN,httpdns.n.netease.com
-      - DOMAIN,httpdns-sdk.n.netease.com
-      - DOMAIN,httpdns.yunxindns.com
-      - DOMAIN,lofter.httpdns.c.163.com
-      - DOMAIN,music.httpdns.c.163.com
-      - DOMAIN,httpdns.yunxindns.com
-      - IP-CIDR,59.111.239.61/32
-      - IP-CIDR,59.111.239.62/32
-      - IP-CIDR,115.236.121.51/32
-      - IP-CIDR,115.236.121.195/32
-      # 百度
-      - DOMAIN,httpdns.baidu.com
-      - DOMAIN,httpsdns.baidu.com
-      - DOMAIN,httpdns.bcelive.com
-      - DOMAIN,httpdns.baidubce.com
-      - DOMAIN,dns.iqiyi.com
-      - DOMAIN,doh.iqiyi.com
-      - DOMAIN,dns.qiyipic.iqiyi.com
-      - DOMAIN,httpdns.n.shifen.com
-      - IP-CIDR,186.76.76.200/32
-      # 京东
-      - DOMAIN,dns.jd.com
-      - IP-CIDR,101.124.19.122/32
-      - IP-CIDR6,2402:db40:5100:1011::5/128
-      - IP-CIDR,103.224.222.208/32
-      # 小米
-      - DOMAIN,httpdns.browser.miui.com
-      - DOMAIN,resolver.msg.xiaomi.net
-      # 快手
-      - DOMAIN,kuaishou.httpdns.pro
-      - DOMAIN,httpdns.kwd.inkuai.com
-      - DOMAIN,apidns.kwd.inkuai.com
-      - DOMAIN,apidns-js.kwd.inkuai.com
-      # 字节跳动
-      - DOMAIN,httpdns.volcengineapi.com
-      - DOMAIN,dig.bdurl.net
-      - DOMAIN,dig.zjurl.cn
-      # 微信
-      - DOMAIN,dns.weixin.qq.com
-      - DOMAIN,dns.weixin.qq.com.cn
-      - DOMAIN,aedns.weixin.qq.com
-      - IP-CIDR,39.156.140.30/32
-      - IP-CIDR,39.156.140.47/32
-      - IP-CIDR,39.156.140.245/32
-      - IP-CIDR,42.81.232.18/32
-      - IP-CIDR,42.187.182.106/32
-      - IP-CIDR,42.187.182.123/32
-      - IP-CIDR,42.187.184.154/32
-      - IP-CIDR,43.130.30.237/32
-      - IP-CIDR,43.130.30.240/32
-      - IP-CIDR,43.137.153.151/32
-      - IP-CIDR,43.137.159.31/32
-      - IP-CIDR,43.152.112.101/32
-      - IP-CIDR,43.153.248.120/32
-      - IP-CIDR,60.28.172.100/32
-      - IP-CIDR,61.151.231.157/32
-      - IP-CIDR,101.32.104.104/32
-      - IP-CIDR,106.39.206.21/32
-      - IP-CIDR,106.39.206.25/32
-      - IP-CIDR,106.39.206.70/32
-      - IP-CIDR,111.31.201.194/32
-      - IP-CIDR,111.31.241.76/32
-      - IP-CIDR,111.31.241.140/32
-      - IP-CIDR,111.206.147.156/32
-      - IP-CIDR,111.206.147.210/32
-      - IP-CIDR,111.206.148.27/32
-      - IP-CIDR,116.128.177.249/32
-      - IP-CIDR,116.130.224.150/32
-      - IP-CIDR,116.130.224.205/32
-      - IP-CIDR,117.185.247.73/32
-      - IP-CIDR,123.151.48.171/32
-      - IP-CIDR,123.151.48.193/32
-      - IP-CIDR,123.151.48.208/32
-      - IP-CIDR,123.151.54.50/32
-      - IP-CIDR,180.153.202.85/32
-      - IP-CIDR,183.192.196.31/32
-      - IP-CIDR,203.205.129.102/32
-      - IP-CIDR,203.205.234.132/32
-      - IP-CIDR,220.196.159.73/32
-      - IP-CIDR6,240e:928:1400:10::25/128
-      - IP-CIDR6,2402:4e00:8030:1::17/128
-      - IP-CIDR6,2402:4e00:1900:1700:0:9554:1ad9:c3a/128
-      - IP-CIDR6,2408:8711:10:10::20/128
-      - IP-CIDR6,2409:8702:4860:10::4d/128
   classical_flexireject:
     type: inline
     <<: *rule_classical
@@ -417,24 +352,23 @@ rules:
   # 分流规则可以直接引用代理或策略组,但不能引用远程代理集; 对于每一条连接,总是从上到下匹配规则; 需要复杂条件时,可以用逻辑运算符去组合多个规则. 并且逻辑规则是可以相互嵌套的
   - DST-PORT,53,dns-hijack # 劫持 DNS 到 Clash 内部 DNS 模块
   - OR,((RULE-SET,site_private),(RULE-SET,ip_private,no-resolve)),Local # 局域网..
-  - OR,((RULE-SET,site_category-httpdns-cn),(RULE-SET,classical_httpdns)),Httpdns # 拦截 HTTPDNS 服务,以确保这些请求能够在 Clash 的 DNS 框架下工作
+  - OR,((RULE-SET,site_httpdns),(RULE-SET,ip_httpdns,no-resolve)),Httpdns # 拦截 HTTPDNS 服务,以确保这些请求能够在 Clash 的 DNS 框架下工作
   - AND,((NETWORK,udp),(DOMAIN-REGEX,(?:stun|turn))),WebRTC # 是否禁用 stun/turn 协议的 UDP 数据,禁用后可以有效解决 WebRTC 的 IP 泄露
   - RULE-SET,classical_flexireject,REJECT-DROP # 自定义拦截
   - RULE-SET,site_ads,Advert # 广告
   # HTTP3/QUIC 协议基于 UDP,在某些代理协议中 UDP 转发效率较低. 可以通过逻辑规则来禁用 QUIC 协议
   # - 'AND,((NETWORK,udp),(NOT,((OR,(RULE-SET,site_cn),(RULE-SET,ip_cn))))),QUIC' # 除 CN 以外的 QUIC
-  # - RULE-SET,classical_flexiproxy,??? # 自定义代理
+  - RULE-SET,site_flexirule,FlexiRule # 自定义代理
   - AND,((DST-PORT,5228-5230),(RULE-SET,site_googlefcm)),Message # Google FCM,直连确保 DNS 无污染/劫持
-  - OR,((DOMAIN-REGEX,^.*\.(mcdn|pcdn)\.bilivideo\.(com|cn)$|^cn-.*\.bilivideo\.(com|cn)$),(DOMAIN-REGEX,^.*\.v1d\.szbdyd\.com$)),BiliCDN # 哔哩哔哩 P/MCDN
+  # - OR,((DOMAIN-REGEX,^.*\.(mcdn|pcdn)\.bilivideo\.(com|cn)$|^cn-.*\.bilivideo\.(com|cn)$),(DOMAIN-REGEX,^.*\.v1d\.szbdyd\.com$)),BiliCDN # 建议使用 https://github.com/Kanda-Akihito-Kun/ccb
   - RULE-SET,site_wechat,WeChat # 微信 自定义
   - OR,((RULE-SET,site_telegram),(RULE-SET,ip_telegram,no-resolve)),Telegram
   - RULE-SET,site_youtube,YouTube
   # - PROCESS-NAME-REGEX,(?i)(Tsukimi|emby),Emby # 不建议使用进程规则
   - RULE-SET,site_onedrive,OneDrive
   - RULE-SET,site_category-games@cn,GameCN # 游戏部分可直连域名
-  - RULE-SET,site_gfw,Proxy
-  - RULE-SET,site_geolocation-cn,Local # 国内常见域名,CN 参杂了它
-  - RULE-SET,site_geolocation-!cn,NoChina # 国外常见域名,CN 参杂了它
-  - RULE-SET,site_cn,Local # CN 域名
-  - RULE-SET,ip_cn,Local # CN IP
+  - OR,((RULE-SET,site_tracker),(RULE-SET,ip_tracker,no-resolve)),Tracker # 种子
+  - RULE-SET,site_!cn,Proxy
+  - RULE-SET,site_cn,Local
+  - RULE-SET,ip_cn,Local
   - MATCH,Proxy # 无需条件,匹配所有请求
