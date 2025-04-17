@@ -1,0 +1,149 @@
+# 来自 Android 透明代理模块 akashaProxy 的自带配置
+# 更新时间 2025/3/5
+#http-port: 7890
+#socks-port: 7891
+redir-port: 7892
+tproxy-port: 7893
+allow-lan: true
+geodata-mode: true
+unified-delay: true
+mode: rule
+log-level: info
+ipv6: true
+tcp-concurrent: true
+keep-alive-interval: 30
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: "https://gcore.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
+  geosite: "https://gcore.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://gcore.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - Mijia Cloud
+
+
+profile:
+  store-fake-ip: true
+  store-selected: true
+
+external-controller: 127.0.0.1:9090
+external-ui: yacd
+bind-address: "*"
+
+tun:
+  enable: true
+  device: Meta
+  stack: mixed
+  dns-hijack:
+    - any:1053
+  auto-route: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  enhanced-mode: redir-host
+  fake-ip-range: 10.100.0.0/8
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+  nameserver-policy:
+    "geosite:cn,private,apple":
+      - https://120.53.53.53/dns-query
+      - https://223.5.5.5/dns-query
+    "geosite:geolocation-!cn,gfw":
+      - "https://dns.cloudflare.com/dns-query#proxy"
+      - "https://dns.google/dns-query#proxy"
+
+proxies:
+# clashMeta配置参考可以看看这个wiki
+# https://wiki.metacubex.one
+
+#预设
+p: &p
+  type: http
+  interval: 1800
+  health-check:
+    enable: true
+    url: https://cp.cloudflare.com/generate_204
+    interval: 300
+
+
+# 代理提供(订阅)组
+# url 里填写自己的订阅,名称不能重复
+proxy-providers:
+  机场1: #机场名
+    <<: *p
+    url: ""
+    # path: ./proxy_providers/jichang1.yaml #指定保存路径 非必填
+
+  # 机场2: #机场名
+    # <<: *p
+    # url: "这里填机场订阅"
+    # path: ./proxy_providers/jichang2.yaml #保存路径
+
+# 代理组
+proxy-groups:
+  - name: proxy
+    type: select
+    proxies:
+      - 香港
+      - 台湾
+      - 日本
+      - 新加坡
+      - 美国
+      - 其它地区
+      - 全部节点
+      - 直连
+
+# 按照区域划定策略组
+  - {name: 香港, type: select , include-all-providers: true, filter: "(?i)港|hk|hongkong|hong kong"}
+  - {name: 台湾, type: select , include-all-providers: true, filter: "(?i)台|tw|taiwan"}
+  - {name: 日本, type: select , include-all-providers: true, filter: "(?i)日|jp|japan"}
+  - {name: 美国, type: select , include-all-providers: true, filter: "(?i)美|us|unitedstates|united states"}
+  - {name: 新加坡, type: select , include-all-providers: true, filter: "(?i)(新|sg|singapore)"}
+  - {name: 其它地区, type: select , include-all-providers: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"}
+  - {name: 全部节点, type: select , include-all-providers: true}
+  
+  - name: 直连
+    type: select
+    proxies:
+      - DIRECT
+      
+
+# 分流规则提供(订阅)组
+rule-providers:
+  AWAvenue:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ./rule_providers/AWAvenue-Ads-Rule-Clash.yaml
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 60480
+
+# 分流规则
+rules:
+  - RULE-SET,AWAvenue,REJECT #去广告
+  - GEOSITE,category-ads-all,REJECT #去广告
+  - GEOSITE,cn,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
+  - MATCH,proxy
+
