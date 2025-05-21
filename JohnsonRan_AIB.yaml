@@ -1,6 +1,7 @@
 # 来自 https://github.com/JohnsonRan/CRules
-# 更新时间：2025/4/15
+# 更新时间：2025/5/19
 # 社区版
+
 # 策略组相关
 pr: &pr {type: select, proxies: [节点选择, 香港, 台湾, 日本, 新加坡, 美国, 其他, DIRECT]}
 url-test: &url-test {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, include-all-providers: true, exclude-filter: "LAN"}
@@ -40,7 +41,7 @@ profile:
 
 sniffer:
   enable: true
-  force-dns-mapping: true
+  force-dns-mapping: false
   parse-pure-ip: true
   sniff:
     HTTP:
@@ -118,18 +119,19 @@ proxy-groups:
   - {name: 其他, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/XXAI.png, type: select, include-all-providers: true, exclude-filter: "HK|US|SG|JP|TW|LAN"}
 
 rules:
-  - DST-PORT,6881,ADBlock #FUCK WPS
+  - DST-PORT,6881-6999,ADBlock #FUCK WPS
   - DST-PORT,3478/19302,DIRECT
-  - RULE-SET,lan_ip,LAN,no-resolve
-  - RULE-SET,custom_direct,DIRECT
+  - GEOIP,lan,LAN,no-resolve
   - RULE-SET,custom_proxy,节点选择
   - RULE-SET,custom_reject,ADBlock
+  - RULE-SET,custom_direct,DIRECT
   - RULE-SET,ADs_merged,ADBlock
   - RULE-SET,httpdns,ADBlock
+  - RULE-SET,category-cngames,DIRECT
+  - RULE-SET,win-update,DIRECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,youtube)),ADBlock
   - RULE-SET,speedtest,Speedtest
   - RULE-SET,apple_proxy,Apple
-  - RULE-SET,apple,DIRECT
   - RULE-SET,biliintl,节点选择
   - RULE-SET,tracker,Tracker
   - RULE-SET,ai,AI
@@ -144,8 +146,6 @@ rules:
   - RULE-SET,microsoft,Microsoft
   - RULE-SET,bahamut,台湾
   - RULE-SET,emby,Emby
-  - DOMAIN-SUFFIX,niceduck.lol,Emby
-  - DOMAIN-KEYWORD,aikan,Emby
   - RULE-SET,gfwlist,节点选择
   - RULE-SET,cn_site,DIRECT
   - RULE-SET,cn_ip,DIRECT
@@ -170,14 +170,14 @@ rule-providers:
     <<: *domain
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/customProxy.yaml"
   custom_reject:
-    <<: *domain
-    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/reject.yaml"
+    <<: *domaintxt
+    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/reject.txt"
   emby:
     <<: *classicaltxt
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/Repcz/Tool/X/Surge/Rules/Emby.list"
   ai:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/ForestL18/rules-dat/raw/mihomo/geo/domain/ai-domain.mrs"
+    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/AIs_merged.mrs"
   ADs_merged:
     <<: *mrs
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/ADs_merged.mrs"
@@ -199,6 +199,9 @@ rule-providers:
   category-porn:
     <<: *mrs
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-porn.mrs"
+  category-cngames:
+    <<: *mrs
+    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-games@cn.mrs"
   bilibili:
     <<: *mrs
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bilibili.mrs"
@@ -214,6 +217,9 @@ rule-providers:
   microsoft:
     <<: *mrs
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs"
+  win-update:
+    <<: *mrs
+    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/win-update.mrs"
   bahamut:
     <<: *mrs
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bahamut.mrs"
@@ -226,15 +232,12 @@ rule-providers:
   httpdns:
     <<: *mrs 
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-httpdns-cn.mrs"
-  apple:
+  apple:	
     <<: *mrs 
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple.mrs"
   apple_proxy:
-    <<: *classicaltxt
-    url: "https://raw.ihtw.moe/github.com/Repcz/Tool/raw/X/Surge/Rules/AppleProxy.list"
-  lan_ip:
-    <<: *mrsip
-    url: "https://raw.ihtw.moe/github.com/ForestL18/rules-dat/raw/mihomo/geo/ipcidr/private-ip.mrs"
+    <<: *mrs
+    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/AppleProxy.mrs"
   speedtest:
     <<: *mrs
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/speedtest.mrs"
