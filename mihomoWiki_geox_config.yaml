@@ -1,13 +1,10 @@
-# 来自 https://wiki.metacubex.one/example/geox
-# 更新时间 2025/3/8
-# mihomo 官方 wiki 的快捷配置 示例 geox 模板
 # url 里填写自己的订阅,名称不能重复
 proxy-providers:
   provider1:
     url: ""
     type: http
     interval: 86400
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider1]"
 
