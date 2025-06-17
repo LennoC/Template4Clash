@@ -189,26 +189,26 @@ proxy-groups-anchor:
     - &out { proxies: [香港, 台湾, 韩国, 日本, 狮城, 美国] }
     - &reject { proxies: [REJECT, REJECT-DROP, PASS] }
   filter_anchor:
-    # - &exclude_eb { exclude-filter: '回国|校园' } # 排除回国
-    # - &filter_0x { filter: '0倍|(?i:x?0x?)' } # 倍率
-    # - &filter_0.1x { filter: '0\.2倍|(?i:x?0\.2x?)' }
-    # - &filter_0.5x { filter: '0\.25倍|(?i:x?0\.25x?)' }
-    # - &filter_0.8x { filter: '0\.5倍|(?i:x?0\.5x?)' }
-    # - &filter_ar { filter: '(?:🇦🇷|阿根廷|布宜诺斯艾利斯|罗萨里奥|门多萨|(?i:\b(?:ar|arg|argentina)\b))' }
-    # - &filter_de { filter: '(?:🇩🇪|德|柏林|慕尼黑|(?i:\b(?:de|deu|germany)\b))' }
-    # - &filter_fr { filter: '(?:🇫🇷|法|巴黎|马赛|(?i:\b(?:fr|fra|france)\b))' }
-    # - &filter_gb { filter: '(?:🇬🇧|英|伦敦|曼彻斯特|(?i:\b(?:uk|gb|gbr|united\s*kingdom|britain)\b))' }
-    - &filter_hk { filter: '(?:🇭🇰|港|(?i:\b(?:hk|hkg|hong|hongkong)\b))' }
+    # - &exclude_eb '回国|校园' # 回国
+    # - &filter_0x '0倍|(?i:x?0x?)' # 倍率
+    # - &filter_0.1x '0\.2倍|(?i:x?0\.2x?)'
+    # - &filter_0.5x '0\.25倍|(?i:x?0\.25x?)'
+    # - &filter_0.8x '0\.5倍|(?i:x?0\.5x?)'
+    # - &filter_ar '(?:🇦🇷|阿根廷|布宜诺斯艾利斯|罗萨里奥|门多萨|(?i:\b(?:ar|arg|argentina)\b))'
+    # - &filter_de '(?:🇩🇪|德|柏林|慕尼黑|(?i:\b(?:de|deu|germany)\b))'
+    # - &filter_fr '(?:🇫🇷|法|巴黎|马赛|(?i:\b(?:fr|fra|france)\b))'
+    # - &filter_gb '(?:🇬🇧|英|伦敦|曼彻斯特|(?i:\b(?:uk|gb|gbr|united\s*kingdom|britain)\b))'
+    - &filter_hk '(?:🇭🇰|港|(?i:\b(?:hk|hkg|hong|hongkong)\b))'
     # - &filter_hk_1 {filter: '(?=.*#1)(?=.*(?:🇭🇰|港|(?i:hk|hkg|hong|hongkong)\b))'} # 包含 #1 的香港
-    # - &filter_in { filter: '(?:🇮🇳|印度|新德里|孟买|班加罗尔|加尔各答|(?i:\b(?:in|ind|india)\b))' }
-    - &filter_jp { filter: '(?:🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(?i:\b(?:jp|jpn|japan)\b))' }
-    - &filter_kr { filter: '(?:🇰🇷|韩国|南韩|首尔|釜山|(?i:\b(?:kr|kor|korea|South\s*Korea)\b))' }
-    # - &filter_lu { filter: '(?:🇱🇺|卢森堡|(?i:\b(?:lu|lux|luxembourg|bt|pt)\b))' } # Torrent专用
-    # - &filter_ru { filter: '(?:🇷🇺|俄罗斯|俄联邦|莫斯科|圣彼得堡|西伯利亚|(?i:\b(?:ru|rus|russia)\b))' }
-    - &filter_sg { filter: '(?:🇸🇬|新加坡|狮|(?i:\b(?:sg|sgp|singapore)\b))' }
-    # - &filter_tr { filter: '(?:🇹🇷|土耳其|安卡拉|伊斯坦布尔|伊兹密尔|(?i:\b(?:tr|tur|turkey)\b))' }
-    - &filter_tw { filter: '(?:🇹🇼|台|高雄|(?i:\b(?:tw|twn|tai|taiwan)\b))' }
-    - &filter_us { filter: '(?:🇺🇸|美|凤凰城|硅谷|洛杉矶|西雅图|芝加哥|(?i:\b(?:us|usa|united\s*states)\b))' }
+    # - &filter_in '(?:🇮🇳|印度|新德里|孟买|班加罗尔|加尔各答|(?i:\b(?:in|ind|india)\b))'
+    - &filter_jp '(?:🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(?i:\b(?:jp|jpn|japan)\b))'
+    - &filter_kr '(?:🇰🇷|韩国|南韩|首尔|釜山|(?i:\b(?:kr|kor|korea|South\s*Korea)\b))'
+    # - &filter_lu '(?:🇱🇺|卢森堡|(?i:\b(?:lu|lux|luxembourg|bt|pt)\b))' # Torrent专用
+    # - &filter_ru '(?:🇷🇺|俄罗斯|俄联邦|莫斯科|圣彼得堡|西伯利亚|(?i:\b(?:ru|rus|russia)\b))'
+    - &filter_sg '(?:🇸🇬|新加坡|狮|(?i:\b(?:sg|sgp|singapore)\b))'
+    # - &filter_tr '(?:🇹🇷|土耳其|安卡拉|伊斯坦布尔|伊兹密尔|(?i:\b(?:tr|tur|turkey)\b))'
+    - &filter_tw '(?:🇹🇼|台|高雄|(?i:\b(?:tw|twn|tai|taiwan)\b))'
+    - &filter_us '(?:🇺🇸|美|凤凰城|硅谷|洛杉矶|西雅图|芝加哥|(?i:\b(?:us|usa|united\s*states)\b))'
 
 proxy-groups:
   # 策略组可以包含多个代理,或多个远程代理集; 不包含任何代理的策略组,会被当作为 DIRECT 策略处理; 如策略组代理来自远程代理集时,则使用 proxy-providers 的 health-check
@@ -232,35 +232,35 @@ proxy-groups:
   - { name: Update, type: select, proxies: [Local, Proxy], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Stack.png' }
   # - { name: 倍率, type: select, proxies: [0x, 0.1x, 0.5x, 0.8x], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png' }
   - { name: 香港, <<: *type_ut, proxies: [香港 A, 香港 B, 香港 C, 香港 D], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png' }
-  - { name: 香港 A, <<: [*type_ut, *filter_hk], use: [Provider_1], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png', hidden: true }
-  - { name: 香港 B, <<: [*type_ut, *filter_hk], use: [Provider_2], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png', hidden: true }
-  - { name: 香港 C, <<: [*type_ut, *filter_hk], use: [Provider_3], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png', hidden: true }
-  - { name: 香港 D, <<: [*type_ut, *filter_hk], use: [Provider_4], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png', hidden: true }
+  - { name: 香港 A, <<: *type_ut, use: [Provider_1], filter: *filter_hk, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png', hidden: true }
+  - { name: 香港 B, <<: *type_ut, use: [Provider_2], filter: *filter_hk, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png', hidden: true }
+  - { name: 香港 C, <<: *type_ut, use: [Provider_3], filter: *filter_hk, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png', hidden: true }
+  - { name: 香港 D, <<: *type_ut, use: [Provider_4], filter: *filter_hk, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png', hidden: true }
   - { name: 台湾, <<: *type_ut, proxies: [台湾 A, 台湾 B, 台湾 C, 台湾 D], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png' }
-  - { name: 台湾 A, <<: [*type_ut, *filter_tw], use: [Provider_1], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png', hidden: true }
-  - { name: 台湾 B, <<: [*type_ut, *filter_tw], use: [Provider_2], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png', hidden: true }
-  - { name: 台湾 C, <<: [*type_ut, *filter_tw], use: [Provider_3], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png', hidden: true }
-  - { name: 台湾 D, <<: [*type_ut, *filter_tw], use: [Provider_4], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png', hidden: true }
+  - { name: 台湾 A, <<: *type_ut, use: [Provider_1], filter: *filter_tw, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png', hidden: true }
+  - { name: 台湾 B, <<: *type_ut, use: [Provider_2], filter: *filter_tw, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png', hidden: true }
+  - { name: 台湾 C, <<: *type_ut, use: [Provider_3], filter: *filter_tw, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png', hidden: true }
+  - { name: 台湾 D, <<: *type_ut, use: [Provider_4], filter: *filter_tw, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png', hidden: true }
   - { name: 韩国, <<: *type_ut, proxies: [韩国 A, 韩国 B, 韩国 C, 韩国 D], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png' }
-  - { name: 韩国 A, <<: [*type_ut, *filter_kr], use: [Provider_1], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png', hidden: true }
-  - { name: 韩国 B, <<: [*type_ut, *filter_kr], use: [Provider_2], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png', hidden: true }
-  - { name: 韩国 C, <<: [*type_ut, *filter_kr], use: [Provider_3], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png', hidden: true }
-  - { name: 韩国 D, <<: [*type_ut, *filter_kr], use: [Provider_4], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png', hidden: true }
+  - { name: 韩国 A, <<: *type_ut, use: [Provider_1], filter: *filter_kr, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png', hidden: true }
+  - { name: 韩国 B, <<: *type_ut, use: [Provider_2], filter: *filter_kr, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png', hidden: true }
+  - { name: 韩国 C, <<: *type_ut, use: [Provider_3], filter: *filter_kr, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png', hidden: true }
+  - { name: 韩国 D, <<: *type_ut, use: [Provider_4], filter: *filter_kr, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png', hidden: true }
   - { name: 日本, <<: *type_ut, proxies: [日本 A, 日本 B, 日本 C, 日本 D], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png' }
-  - { name: 日本 A, <<: [*type_ut, *filter_jp], use: [Provider_1], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png', hidden: true }
-  - { name: 日本 B, <<: [*type_ut, *filter_jp], use: [Provider_2], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png', hidden: true }
-  - { name: 日本 C, <<: [*type_ut, *filter_jp], use: [Provider_3], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png', hidden: true }
-  - { name: 日本 D, <<: [*type_ut, *filter_jp], use: [Provider_4], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png', hidden: true }
+  - { name: 日本 A, <<: *type_ut, use: [Provider_1], filter: *filter_jp, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png', hidden: true }
+  - { name: 日本 B, <<: *type_ut, use: [Provider_2], filter: *filter_jp, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png', hidden: true }
+  - { name: 日本 C, <<: *type_ut, use: [Provider_3], filter: *filter_jp, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png', hidden: true }
+  - { name: 日本 D, <<: *type_ut, use: [Provider_4], filter: *filter_jp, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png', hidden: true }
   - { name: 狮城, <<: *type_ut, proxies: [狮城 A, 狮城 B, 狮城 C, 狮城 D], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png' }
-  - { name: 狮城 A, <<: [*type_ut, *filter_sg], use: [Provider_1], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png', hidden: true }
-  - { name: 狮城 B, <<: [*type_ut, *filter_sg], use: [Provider_2], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png', hidden: true }
-  - { name: 狮城 C, <<: [*type_ut, *filter_sg], use: [Provider_3], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png', hidden: true }
-  - { name: 狮城 D, <<: [*type_ut, *filter_sg], use: [Provider_4], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png', hidden: true }
+  - { name: 狮城 A, <<: *type_ut, use: [Provider_1], filter: *filter_sg, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png', hidden: true }
+  - { name: 狮城 B, <<: *type_ut, use: [Provider_2], filter: *filter_sg, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png', hidden: true }
+  - { name: 狮城 C, <<: *type_ut, use: [Provider_3], filter: *filter_sg, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png', hidden: true }
+  - { name: 狮城 D, <<: *type_ut, use: [Provider_4], filter: *filter_sg, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png', hidden: true }
   - { name: 美国, <<: *type_ut, proxies: [美国 A, 美国 B, 美国 C, 美国 D], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png' }
-  - { name: 美国 A, <<: [*type_ut, *filter_us], use: [Provider_1], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png', hidden: true }
-  - { name: 美国 B, <<: [*type_ut, *filter_us], use: [Provider_2], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png', hidden: true }
-  - { name: 美国 C, <<: [*type_ut, *filter_us], use: [Provider_3], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png', hidden: true }
-  - { name: 美国 D, <<: [*type_ut, *filter_us], use: [Provider_4], icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png', hidden: true }
+  - { name: 美国 A, <<: *type_ut, use: [Provider_1], filter: *filter_us, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png', hidden: true }
+  - { name: 美国 B, <<: *type_ut, use: [Provider_2], filter: *filter_us, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png', hidden: true }
+  - { name: 美国 C, <<: *type_ut, use: [Provider_3], filter: *filter_us, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png', hidden: true }
+  - { name: 美国 D, <<: *type_ut, use: [Provider_4], filter: *filter_us, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png', hidden: true }
   - { name: Fallback, <<: [*type_fb, *out], hidden: true }
   - { name: 以太网 + WLAN, <<: *type_lb-rr, proxies: [以太网, WLAN], hidden: true }
   - { name: data0 + wlan0, <<: *type_lb-rr, proxies: [rmnet_data0, wlan0], hidden: true }
@@ -272,24 +272,23 @@ proxy-groups:
 rule-providers-anchor:
   # 锚点 如合并时有重复的项,则不会去合并; 锚点名尽量不要含特殊字符
   # - &rule_asn { type: http,behavior: ipcidr,format: mrs,proxy: Update,interval: 86400 }
-  - &rule { type: http, behavior: classical, format: yaml, proxy: Update, interval: 86400 }
-  - &rule_site { type: http, behavior: domain, format: mrs, proxy: Update, interval: 86400 }
-  - &rule_ip { type: http, behavior: ipcidr, format: mrs, proxy: Update, interval: 86400 }
+  - &rule { type: http, behavior: classical, format: text, proxy: Update, interval: 86400 }
+  - &site_rule { type: http, behavior: domain, format: mrs, proxy: Update, interval: 86400 }
+  - &ip_rule { type: http, behavior: ipcidr, format: mrs, proxy: Update, interval: 86400 }
 
 rule-providers:
   # 对于去广告,按 IP 地理信息分流等需要大量规则的场景,建议使用 domain 或 ipcidr 类型的规则集合,这能有效降低内存占用并提高匹配速度
   # 不建议使用大量 classical 类型的规则集合。此类规则只能进行顺序匹配，会显著增加匹配耗时和内存占用
-  site_private: { <<: *rule_site, path: ./rule_providers/domain/private, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs' }
-  # site_ad: { <<: *rule_site, path: ./rule_providers/domain/category-ads-all, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs' }
-  site_ad: { <<: *rule_site, path: ./rule_providers/domain/adrules, url: 'https://testingcf.jsdelivr.net/gh/Cats-Team/AdRules@main/adrules-mihomo.mrs' }
-  # site_ad: { <<: *rule_site, path: ./rule_providers/domain/anti-ad, url: 'https://testingcf.jsdelivr.net/gh/privacy-protection-tools/anti-ad.github.io@master/docs/mihomo.mrs' }
-  # site_ad: { <<: *rule_site, path: ./rule_providers/domain/awavenue-ads-rule, url: 'https://testingcf.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Clash.mrs' }
-  # site_ad: { <<: *rule_site, path: ./rule_providers/domain/dns-blocklists, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/dns-blocklists.mrs' }
-  site_httpdns: { <<: *rule_site, path: ./rule_providers/domain/httpdns, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/httpdns.mrs' }
+  site_private: { <<: *site_rule, path: ./rule_providers/domain/private, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs' }
+  # site_ad: { <<: *site_rule, path: ./rule_providers/domain/category-ads-all, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs' }
+  site_ad: { <<: *site_rule, path: ./rule_providers/domain/adrules, url: 'https://testingcf.jsdelivr.net/gh/Cats-Team/AdRules@main/adrules-mihomo.mrs' }
+  # site_ad: { <<: *site_rule, path: ./rule_providers/domain/anti-ad, url: 'https://testingcf.jsdelivr.net/gh/privacy-protection-tools/anti-ad.github.io@master/docs/mihomo.mrs' }
+  # site_ad: { <<: *site_rule, path: ./rule_providers/domain/awavenue-ads-rule, url: 'https://testingcf.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Clash.mrs' }
+  # site_ad: { <<: *site_rule, path: ./rule_providers/domain/dns-blocklists, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/dns-blocklists.mrs' }
+  site_httpdns: { <<: *site_rule, path: ./rule_providers/domain/httpdns, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/httpdns.mrs' }
   site_webrtc:
     type: inline
-    format: yaml
-    <<: *rule_site
+    <<: *site_rule
     payload:
       - '+.stun.*'
       - '+.stun*.*'
@@ -315,27 +314,25 @@ rule-providers:
       - 's1.voipstation.jp'
       - 's2.taraba.net'
       - 's2.voipstation.jp'
-  site_googlefcm: { <<: *rule_site, path: ./rule_providers/domain/googlefcm, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs' }
-  site_telegram: { <<: *rule_site, path: ./rule_providers/domain/telegram, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs' }
+  site_googlefcm: { <<: *site_rule, path: ./rule_providers/domain/googlefcm, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs' }
+  site_telegram: { <<: *site_rule, path: ./rule_providers/domain/telegram, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs' }
   site_wechat:
     type: inline
-    format: yaml
-    <<: *rule_site
+    <<: *site_rule
     payload:
       - 'short.weixin.qq.com'
       - '+short.weixin.qq.com'
       - 'long.weixin.qq.com'
       - '+long.weixin.qq.com'
-  site_youtube: { <<: *rule_site, path: ./rule_providers/domain/youtube, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs' }
-  site_win-update: { <<: *rule_site, path: ./rule_providers/domain/win-update, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/win-update.mrs' }
-  site_onedrive: { <<: *rule_site, path: ./rule_providers/domain/onedrive, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/onedrive.mrs' }
-  site_category-games@cn: { <<: *rule_site, path: ./rule_providers/domain/category-games@cn, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games@cn.mrs' }
-  site_cn-lite: { <<: *rule_site, path: ./rule_providers/domain/cn-lite, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/cn-lite.mrs' }
-  site_cn: { <<: *rule_site, path: ./rule_providers/domain/cn, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/cn.mrs' }
+  site_youtube: { <<: *site_rule, path: ./rule_providers/domain/youtube, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs' }
+  site_win-update: { <<: *site_rule, path: ./rule_providers/domain/win-update, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/win-update.mrs' }
+  site_onedrive: { <<: *site_rule, path: ./rule_providers/domain/onedrive, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/onedrive.mrs' }
+  site_category-games@cn: { <<: *site_rule, path: ./rule_providers/domain/category-games@cn, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games@cn.mrs' }
+  site_cn-lite: { <<: *site_rule, path: ./rule_providers/domain/cn-lite, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/cn-lite.mrs' }
+  site_cn: { <<: *site_rule, path: ./rule_providers/domain/cn, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/site/cn.mrs' }
   site_fake-ip:
     type: inline
-    format: yaml
-    <<: *rule_site
+    <<: *site_rule
     payload:
       - '+.market.xiaomi.com'
       - '*.bilivideo.com'
@@ -375,18 +372,17 @@ rule-providers:
       - 's2.taraba.net'
       - 's2.voipstation.jp'
 
-  ip_private: { <<: *rule_ip, path: ./rule_providers/ipcidr/private, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs' }
-  ip_httpdns: { <<: *rule_ip, path: ./rule_providers/ipcidr/httpdns, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/ip/httpdns.mrs' }
+  ip_private: { <<: *ip_rule, path: ./rule_providers/ipcidr/private, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs' }
+  ip_httpdns: { <<: *ip_rule, path: ./rule_providers/ipcidr/httpdns, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/ip/httpdns.mrs' }
   ip_webrtc:
     type: inline
-    format: yaml
-    <<: *rule_ip
+    <<: *ip_rule
     payload:
       - '124.64.206.224/32'
       - '23.21.150.121/32'
       - '39.107.142.158/32'
-  ip_telegram: { <<: *rule_ip, path: ./rule_providers/ipcidr/telegram, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs' }
-  ip_cn: { <<: *rule_ip, path: ./rule_providers/ipcidr/cn, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/ip/cn.mrs' }
+  ip_telegram: { <<: *ip_rule, path: ./rule_providers/ipcidr/telegram, url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs' }
+  ip_cn: { <<: *ip_rule, path: ./rule_providers/ipcidr/cn, url: 'https://testingcf.jsdelivr.net/gh/yiteei/Share@Proxy/rules/ip/cn.mrs' }
 
   flexireject:
     type: inline
