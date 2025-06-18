@@ -25,7 +25,7 @@ jobs:
             "https://raw.githubusercontent.com/yiteei/Share/refs/heads/Proxy/config/fake-ip.yaml"
 
           curl -s -o "JohnsonRan_AIB.yaml" \
-            "hhttps://raw.githubusercontent.com/JohnsonRan/CRules/refs/heads/master/config/AIB.yaml"
+            "https://raw.githubusercontent.com/JohnsonRan/CRules/refs/heads/master/config/AIB.yaml"
           curl -s -o "JohnsonRan_AIO.yaml" \
             "https://raw.githubusercontent.com/JohnsonRan/CRules/refs/heads/master/config/AIO.yaml"
           curl -s -o "Surfing_config.yaml" \
