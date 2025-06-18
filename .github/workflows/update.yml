@@ -24,6 +24,15 @@ jobs:
           curl -s -o "yiteei_fake-ip_config.yaml" \
             "https://raw.githubusercontent.com/yiteei/Share/refs/heads/Proxy/config/fake-ip.yaml"
 
+          curl -s -o "JohnsonRan_AIB.yaml" \
+            "hhttps://raw.githubusercontent.com/JohnsonRan/CRules/refs/heads/master/config/AIB.yaml"
+          curl -s -o "JohnsonRan_AIO.yaml" \
+            "https://raw.githubusercontent.com/JohnsonRan/CRules/refs/heads/master/config/AIO.yaml"
+          curl -s -o "Surfing_config.yaml" \
+            "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/main/box_bll/clash/config.yaml"
+          curl -s -o "akashaproxy_config.yaml" \
+            "https://raw.githubusercontent.com/akashaProxy/akashaProxy/refs/heads/master/module/clash/config.yaml.example"
+
       - name: 提交并推送更改
         run: |
           git config --global user.name "GitHub Actions"
