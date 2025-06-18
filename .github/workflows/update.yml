@@ -1,0 +1,33 @@
+name: Update File
+
+on:
+  schedule:
+    - cron: '30 22 * * *' # UTC 22:30 = 北京时间次日6:30
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  update-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检查存储库
+        uses: actions/checkout@v4
+
+      - name: 下载新配置
+        run: |
+          curl -s -o "mihomoWiki_rule-set_config.yaml" \
+            "https://wiki.metacubex.one/example/mrs"
+          curl -s -o "mihomoWiki_geox_config.yaml" \
+            "https://wiki.metacubex.one/example/geox"
+
+          curl -s -o "yiteei_redir-host_config.yaml" \
+            "https://raw.githubusercontent.com/yiteei/Share/refs/heads/Proxy/config/redir-host.yaml"
+          curl -s -o "yiteei_fake-ip_config.yaml" \
+            "https://raw.githubusercontent.com/yiteei/Share/refs/heads/Proxy/config/fake-ip.yaml"
+
+      - name: 提交并推送更改
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Update files" || echo "No changes to commit"
+          git push
