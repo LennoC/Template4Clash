@@ -32,6 +32,8 @@ jobs:
             "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/main/box_bll/clash/config.yaml"
           curl -s -o "akashaproxy_config.yaml" \
             "https://raw.githubusercontent.com/akashaProxy/akashaProxy/refs/heads/master/module/clash/config.yaml.example"
+          curl -s -o "ClashMix_config.yaml" \
+            "https://raw.githubusercontent.com/AXEVO/Clash-MIX/refs/heads/Clash-MIX-4.0/Clash/Clash%E9%85%8D%E7%BD%AE.yaml"
 
       - name: 提交并推送更改
         run: |
