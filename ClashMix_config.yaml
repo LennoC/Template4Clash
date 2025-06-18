@@ -1,5 +1,3 @@
-# 来自 Android 透明代理模块 Clash Mix 的自带配置
-# 更新时间 2025/4/16
 #开始编辑配置时，心中牢记缩进和冒号引号，任何不懂，查看官方wiki：https://wiki.metacubex.one
 #修改配置后如果内核不能启动，请查看日志，日志中会告诉你配置第几行写错
 #或者使用在线yaml检测器进行检测（https://www.bejson.com/validators/yaml_editor/）
