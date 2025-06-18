@@ -1,8 +1,5 @@
-# 来自 https://github.com/JohnsonRan/CRules
-# 更新时间：2025/4/15
-# 个人自用版
 # 策略组相关
-pr: &pr {type: select, proxies: [节点选择, 香港, 台湾, 日本, 新加坡, 美国, DIRECT]}
+pr: &pr {type: select, proxies: [节点选择, 香港, 台湾, 日本, 新加坡, 美国, 其他, DIRECT]}
 url-test: &url-test {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, include-all-providers: true, exclude-filter: "LAN"}
 fallback: &fallback {type: fallback, url: https://www.gstatic.com/generate_204, interval: 300, include-all-providers: true, exclude-filter: "LAN"}
 load-balance: &load-balance {type: load-balance, url: https://www.gstatic.com/generate_204, interval: 300, include-all-providers: true, strategy: sticky-sessions, exclude-filter: "LAN"}
@@ -40,7 +37,7 @@ profile:
 
 sniffer:
   enable: true
-  force-dns-mapping: true
+  force-dns-mapping: false
   parse-pure-ip: true
   sniff:
     HTTP:
@@ -73,8 +70,8 @@ dns:
 #    - "https://208.67.222.2/dns-query"
 #    - "https://9.9.9.9/dns-query"
   proxy-server-nameserver:
-    - 101.226.4.6 #360
     - 223.5.5.5
+    - 101.226.4.6 #360
   nameserver-policy:
     "*": 127.0.0.1#lo
     "+.lan": 127.0.0.1#lo
@@ -95,9 +92,11 @@ experimental:
 proxy-groups:
   - {name: 节点选择, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/sub(1).png, type: select, proxies: [自建, 香港, 台湾, 日本, 新加坡, 美国, DIRECT]}
   - {name: 自建, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/lightning(2).png, type: select, include-all-proxies: true, exclude-filter: "LAN"}
+  - {name: 代理链, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/nike.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
   - {name: Speedtest, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/speedtest.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
-  - {name: Emby, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/emby.png, type: select, proxies: [节点选择, 低倍率, DIRECT]}
+  - {name: Emby, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/emby.png, <<: *pr}
   - {name: AI, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/ChatGPT-green.png, <<: *pr}
+  - {name: Steam, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/steam.png, <<: *pr}
   - {name: Apple, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/apple.png, type: select, proxies: [美国, 香港, 台湾, 日本, 新加坡, DIRECT]}
   - {name: Github, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/github.png, <<: *pr}
   - {name: Telegram, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/telegram(blue1).png, <<: *pr}
@@ -116,21 +115,22 @@ proxy-groups:
   - {name: 新加坡, <<: *url-test, filter: "🇸🇬|SG", icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/singapore(2).png}
   - {name: 日本, <<: *url-test, filter: "🇯🇵|JP", icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/Japan(1).png}
   - {name: 台湾, <<: *url-test, filter: "🇹🇼|TW", icon: https://raw.ihtw.moe/https://github.com/lige47/QuanX-icon-rule/raw/main/icon/taiwan.png}
-  - {name: 低倍率, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/duck(1).png, <<: *fallback, filter: "(?i)(0\\.\\d+)"}
+  - {name: 其他, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/XXAI.png, type: select, include-all-providers: true, exclude-filter: "HK|US|SG|JP|TW|LAN"}
 
 rules:
-  - DST-PORT,6881,ADBlock #FUCK WPS
+  - DST-PORT,6881-6999,ADBlock #FUCK WPS
   - DST-PORT,3478/19302,DIRECT
-  - RULE-SET,lan_ip,LAN,no-resolve
-  - RULE-SET,custom_direct,DIRECT
+  - GEOIP,lan,LAN,no-resolve
   - RULE-SET,custom_proxy,节点选择
   - RULE-SET,custom_reject,ADBlock
+  - RULE-SET,custom_direct,DIRECT
   - RULE-SET,ADs_merged,ADBlock
   - RULE-SET,httpdns,ADBlock
-  - AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,youtube)),ADBlock
+  - RULE-SET,category-cngames,DIRECT
+  - RULE-SET,win-update,DIRECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_site)))),ADBlock
   - RULE-SET,speedtest,Speedtest
   - RULE-SET,apple_proxy,Apple
-  - RULE-SET,apple,DIRECT
   - RULE-SET,biliintl,节点选择
   - RULE-SET,tracker,Tracker
   - RULE-SET,ai,AI
@@ -145,8 +145,8 @@ rules:
   - RULE-SET,microsoft,Microsoft
   - RULE-SET,bahamut,台湾
   - RULE-SET,emby,Emby
-  - DOMAIN-SUFFIX,niceduck.lol,Emby
-  - DOMAIN-KEYWORD,aikan,Emby
+  - RULE-SET,steamcn,DIRECT
+  - RULE-SET,steam,Steam
   - RULE-SET,gfwlist,节点选择
   - RULE-SET,cn_site,DIRECT
   - RULE-SET,cn_ip,DIRECT
@@ -171,14 +171,14 @@ rule-providers:
     <<: *domain
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/customProxy.yaml"
   custom_reject:
-    <<: *domain
-    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/reject.yaml"
+    <<: *domaintxt
+    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/reject.txt"
   emby:
     <<: *classicaltxt
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/Repcz/Tool/X/Surge/Rules/Emby.list"
   ai:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/ForestL18/rules-dat/raw/mihomo/geo/domain/ai-domain.mrs"
+    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/AIs_merged.mrs"
   ADs_merged:
     <<: *mrs
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/ADs_merged.mrs"
@@ -200,6 +200,9 @@ rule-providers:
   category-porn:
     <<: *mrs
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-porn.mrs"
+  category-cngames:
+    <<: *mrs
+    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-games@cn.mrs"
   bilibili:
     <<: *mrs
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bilibili.mrs"
@@ -215,6 +218,9 @@ rule-providers:
   microsoft:
     <<: *mrs
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs"
+  win-update:
+    <<: *mrs
+    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/win-update.mrs"
   bahamut:
     <<: *mrs
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bahamut.mrs"
@@ -227,18 +233,18 @@ rule-providers:
   httpdns:
     <<: *mrs 
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-httpdns-cn.mrs"
-  apple:
-    <<: *mrs 
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple.mrs"
   apple_proxy:
-    <<: *classicaltxt
-    url: "https://raw.ihtw.moe/github.com/Repcz/Tool/raw/X/Surge/Rules/AppleProxy.list"
-  lan_ip:
-    <<: *mrsip
-    url: "https://raw.ihtw.moe/github.com/ForestL18/rules-dat/raw/mihomo/geo/ipcidr/private-ip.mrs"
+    <<: *mrs
+    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/AppleProxy.mrs"
   speedtest:
     <<: *mrs
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/speedtest.mrs"
   gfwlist:
     <<: *mrs
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/gfw.mrs"
+  steamcn:
+    <<: *mrs
+    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam@cn.mrs"
+  steam:
+    <<: *mrs
+    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam.mrs"
