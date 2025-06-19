@@ -34,6 +34,8 @@ jobs:
             "https://raw.githubusercontent.com/akashaProxy/akashaProxy/refs/heads/master/module/clash/config.yaml.example"
           curl -s -o "ClashMix_config.yaml" \
             "https://raw.githubusercontent.com/AXEVO/Clash-MIX/refs/heads/Clash-MIX-4.0/Clash/Clash%E9%85%8D%E7%BD%AE.yaml"
+          curl -s -o "iKelee_Clash_Sample_Configuration" \
+            "https://raw.githubusercontent.com/luestr/ProxyResource/refs/heads/main/Tool/Clash/Config/Clash_Sample_Configuration_By_iKeLee.yaml"
 
       - name: 提交并推送更改
         run: |
