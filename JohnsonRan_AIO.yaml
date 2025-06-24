@@ -97,7 +97,7 @@ proxy-groups:
   - {name: Emby, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/emby.png, <<: *pr}
   - {name: AI, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/ChatGPT-green.png, <<: *pr}
   - {name: Steam, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/steam.png, <<: *pr}
-  - {name: Apple, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/apple.png, type: select, proxies: [美国, 香港, 台湾, 日本, 新加坡, DIRECT]}
+  - {name: Apple, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/apple.png, type: select, proxies: [节点选择, 美国, 香港, 台湾, 日本, 新加坡, DIRECT]}
   - {name: Github, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/github.png, <<: *pr}
   - {name: Telegram, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/telegram(blue1).png, <<: *pr}
   - {name: Google, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/google(1).png, <<: *pr}
