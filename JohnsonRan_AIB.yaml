@@ -60,6 +60,7 @@ tun:
 
 dns:
   enable: true
+  cache-algorithm: arc
   ipv6: false
   respect-rules: true
   listen: 0.0.0.0:1053
@@ -76,8 +77,8 @@ dns:
     "+.local": 127.0.0.1#lo
     "+.ts.net": 127.0.0.1#tailscale0
     "rule-set:cn_site,apple":
-      - 223.5.5.5
-      - 119.29.29.29
+      - system
+      - 101.226.4.6
 
 ntp:
   enable: true
