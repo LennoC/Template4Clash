@@ -76,7 +76,7 @@ dns:
     "+.lan": 127.0.0.1#lo
     "+.local": 127.0.0.1#lo
     "+.ts.net": 127.0.0.1#tailscale0
-    "rule-set:cn_site,apple":
+    "rule-set:cn_site,apple-cn":
       - system
       - 101.226.4.6
 
@@ -232,9 +232,9 @@ rule-providers:
   httpdns:
     <<: *mrs 
     url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-httpdns-cn.mrs"
-  apple:	
+  apple-cn:	
     <<: *mrs 
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple.mrs"
+    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple-cn.mrs"
   apple_proxy:
     <<: *mrs
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/AppleProxy.mrs"
