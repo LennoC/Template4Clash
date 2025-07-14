@@ -16,11 +16,13 @@ proxy-providers:
     url: "http://172.16.1.50:3001/D2UhuYViWtqwddacM4ss/download/collection/AIO"
 
 mixed-port: 7890
-ipv6: false
+ipv6: true
 log-level: warning
 allow-lan: true
 skip-auth-prefixes:
 - 127.0.0.1/8
+- 172.16.1.1/24
+- 172.20.10.1/24
 unified-delay: true
 tcp-concurrent: true
 external-ui: ui
@@ -61,7 +63,7 @@ tun:
 dns:
   enable: true
   cache-algorithm: arc
-  ipv6: false
+  ipv6: true
   respect-rules: true
   listen: 0.0.0.0:1053
   enhanced-mode: redir-host
@@ -118,6 +120,7 @@ proxy-groups:
 
 rules:
   - DST-PORT,6881-6999,ADBlock #FUCK WPS
+  - IP-CIDR,192.51.100.100/32,ADBlock
   - DST-PORT,3478/19302,DIRECT
   - GEOIP,lan,LAN,no-resolve
   - RULE-SET,custom_proxy,节点选择
