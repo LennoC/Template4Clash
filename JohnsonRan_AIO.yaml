@@ -64,23 +64,10 @@ dns:
   enable: true
   cache-algorithm: arc
   ipv6: true
-  respect-rules: true
   listen: 0.0.0.0:1053
   enhanced-mode: redir-host
   nameserver:
-    - "https://208.67.222.2/dns-query"
-    - "https://9.9.9.9/dns-query"
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-  nameserver-policy:
-    "*": 127.0.0.1#lo
-    "+.lan": 127.0.0.1#lo
-    "+.local": 127.0.0.1#lo
-    "+.ts.net": 127.0.0.1#tailscale0
-    "rule-set:cn_site,apple-cn":
-      - system
-      - 101.226.4.6
+    - "https://101.34.254.32/ihtw"
 
 ntp:
   enable: true
