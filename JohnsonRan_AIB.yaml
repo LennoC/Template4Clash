@@ -89,32 +89,32 @@ experimental:
   quic-go-disable-ecn: false
 
 proxy-groups:
-  - {name: 节点选择, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/sub(1).png, type: select, proxies: [自动选择, 香港, 台湾, 日本, 新加坡, 美国, 其他, DIRECT]}
-  - {name: 自动选择, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/lightning(2).png, <<: *fallback}
-  - {name: Speedtest, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/speedtest.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
-  - {name: Emby, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/emby.png, <<: *pr}
-  - {name: AI, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/ChatGPT-green.png, <<: *pr}
-  - {name: Steam, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/steam.png, <<: *pr}
-  - {name: Apple, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/apple.png, type: select, proxies: [美国, 香港, 台湾, 日本, 新加坡, DIRECT]}
-  - {name: Github, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/github.png, <<: *pr}
-  - {name: Telegram, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/telegram(blue1).png, <<: *pr}
-  - {name: Google, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/google(1).png, <<: *pr}
-  - {name: YouTube, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/youtube.png, <<: *pr}
-  - {name: Tracker, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/direct.png, type: select, proxies: [DIRECT, 香港, 台湾, 日本, 新加坡, 美国]}
-  - {name: Porns, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/yuyanyun.png, <<: *pr}
-  - {name: Bilibili, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/bilibili(1).png, type: select, proxies: [DIRECT, 香港, 台湾]}
-  - {name: Microsoft, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/microsoft.png, <<: *pr}
-  - {name: ADBlock, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/ad(6).png, type: select, proxies: [REJECT, DIRECT]}
-  - {name: MATCH, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/shutiao.png, <<: *pr}
+  - {name: 节点选择, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/sub(1).png, type: select, proxies: [自动选择, 香港, 台湾, 日本, 新加坡, 美国, 其他, DIRECT]}
+  - {name: 自动选择, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/lightning(2).png, <<: *fallback}
+  - {name: Speedtest, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/speedtest.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
+  - {name: Emby, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/emby.png, <<: *pr}
+  - {name: AI, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/ChatGPT-green.png, <<: *pr}
+  - {name: Steam, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/steam.png, <<: *pr}
+  - {name: Apple, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/apple.png, type: select, proxies: [美国, 香港, 台湾, 日本, 新加坡, DIRECT]}
+  - {name: Github, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/github.png, <<: *pr}
+  - {name: Telegram, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/telegram(blue1).png, <<: *pr}
+  - {name: Google, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/google(1).png, <<: *pr}
+  - {name: YouTube, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/youtube.png, <<: *pr}
+  - {name: Tracker, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/direct.png, type: select, proxies: [DIRECT, 香港, 台湾, 日本, 新加坡, 美国]}
+  - {name: Porns, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/yuyanyun.png, <<: *pr}
+  - {name: Bilibili, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/bilibili(1).png, type: select, proxies: [DIRECT, 香港, 台湾]}
+  - {name: Microsoft, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/microsoft.png, <<: *pr}
+  - {name: ADBlock, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/ad(6).png, type: select, proxies: [REJECT, DIRECT]}
+  - {name: MATCH, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/shutiao.png, <<: *pr}
 
 # 分隔,下面是地区分组
-  - {name: 香港, <<: *url-test, filter: "🇭🇰|香港|HK|Hong", icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/Hongkong(2).png}
-  - {name: 美国, <<: *url-test, filter: "🇺🇸|美国|US|United States", icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/US(1).png}
-  - {name: 新加坡, <<: *url-test, filter: "🇸🇬|新加坡|狮|SG|Singapore", icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/singapore(2).png}
-  - {name: 日本, <<: *url-test, filter: "🇯🇵|日本|东京|JP|Japan", icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/Japan(1).png}
-  - {name: 台湾, <<: *url-test, filter: "🇨🇳|🇹🇼|台湾|TW|Tai|Taiwan", icon: https://raw.ihtw.moe/https://github.com/lige47/QuanX-icon-rule/raw/main/icon/taiwan.png}
-  - {name: 低倍率, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/duck(1).png, <<: *fallback, filter: "(?i)(0\\.\\d+)"}
-  - {name: 其他, icon: https://raw.ihtw.moe/github.com/lige47/QuanX-icon-rule/raw/main/icon/XXAI.png, type: select, include-all-providers: true, exclude-filter: "HK|US|SG|JP|TW|LAN"}
+  - {name: 香港, <<: *url-test, filter: "🇭🇰|香港|HK|Hong", icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/Hongkong(2).png}
+  - {name: 美国, <<: *url-test, filter: "🇺🇸|美国|US|United States", icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/US(1).png}
+  - {name: 新加坡, <<: *url-test, filter: "🇸🇬|新加坡|狮|SG|Singapore", icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/singapore(2).png}
+  - {name: 日本, <<: *url-test, filter: "🇯🇵|日本|东京|JP|Japan", icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/Japan(1).png}
+  - {name: 台湾, <<: *url-test, filter: "🇨🇳|🇹🇼|台湾|TW|Tai|Taiwan", icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/taiwan.png}
+  - {name: 低倍率, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/duck(1).png, <<: *fallback, filter: "(?i)(0\\.\\d+)"}
+  - {name: 其他, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/XXAI.png, type: select, include-all-providers: true, exclude-filter: "HK|US|SG|JP|TW|LAN"}
 
 rules:
   - DST-PORT,6881-6999,ADBlock #FUCK WPS
@@ -165,88 +165,88 @@ rule-anchor:
 rule-providers:
   custom_direct:
     <<: *domain
-    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/custom.yaml"
+    url: "https://git.ihtw.moe/JohnsonRan/CRules/raw/master/rules/custom.yaml"
   custom_proxy:
     <<: *domain
-    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/customProxy.yaml"
+    url: "https://git.ihtw.moe/JohnsonRan/CRules/raw/master/rules/customProxy.yaml"
   custom_reject:
     <<: *domaintxt
-    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/reject.txt"
+    url: "https://git.ihtw.moe/JohnsonRan/CRules/raw/master/rules/reject.txt"
   emby:
     <<: *classicaltxt
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/Repcz/Tool/X/Surge/Rules/Emby.list"
   ai:
     <<: *mrs
-    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/AIs_merged.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/CRules/raw/mihomo/rules/AIs_merged.mrs"
   ADs_merged:
     <<: *mrs
-    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/ADs_merged.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/CRules/raw/mihomo/rules/ADs_merged.mrs"
   biliintl:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo-lite/geosite/biliintl.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo-lite/geosite/biliintl.mrs"
   tracker:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tracker.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/tracker.mrs"
   youtube:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs"
   google_site:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/google.mrs"
   google_ip:
     <<: *mrsip
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geoip/google.mrs"
   category-porn:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-porn.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/category-porn.mrs"
   category-cngames:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-games@cn.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/category-games@cn.mrs"
   bilibili:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bilibili.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/bilibili.mrs"
   tg_ip:
     <<: *mrsip
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs"
   tg_site:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs"
   github:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/github.mrs"
   microsoft:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs"
   win-update:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/win-update.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/win-update.mrs"
   bahamut:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bahamut.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/bahamut.mrs"
   cn_site:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cn.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/cn.mrs"
   cn_ip:
     <<: *mrsip
     url: "https://raw.ihtw.moe/github.com/ForestL18/rules-dat/raw/mihomo/asn/combined/China-ASN-combined.mrs"
   httpdns:
     <<: *mrs 
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-httpdns-cn.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/category-httpdns-cn.mrs"
   apple-cn:	
     <<: *mrs 
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple-cn.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/apple-cn.mrs"
   apple_proxy:
     <<: *mrs
-    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/AppleProxy.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/CRules/raw/mihomo/rules/AppleProxy.mrs"
   speedtest:
     <<: *mrs
-    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/speedtest.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/CRules/raw/mihomo/rules/speedtest.mrs"
   gfwlist:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/gfw.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/gfw.mrs"
   steamcn:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam@cn.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam@cn.mrs"
   steam:
     <<: *mrs
-    url: "https://raw.ihtw.moe/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam.mrs"
