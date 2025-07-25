@@ -246,7 +246,7 @@ rule-providers:
     url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/gfw.mrs"
   steamcn:
     <<: *mrs
-    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam@cn.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/steam@cn.mrs"
   steam:
     <<: *mrs
-    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam.mrs"
+    url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/steam.mrs"

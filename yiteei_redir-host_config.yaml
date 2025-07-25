@@ -3,6 +3,8 @@
 mixed-port: 2234 # 混合端口 同时支持 HTTP(S) 和 SOCKS5 协议
 ipv6: true # 内核接受 IPv6 流量
 allow-lan: true # 允许其他设备通过 Clash 的代理端口访问互联网
+lan-allowed-ips: [127.0.0.1/32]
+skip-auth-prefixes: [127.0.0.1/32]
 bind-address: '*' # 绑定地址,仅允许其他设备通过这个地址访问
 unified-delay: false # 统一延迟,会计算 RTT,以消除连接握手等带来的不同类型节点的延迟差异
 tcp-concurrent: true # 并发向所有 IP 发起 TCP 连接,选择最快握手成功的结果
@@ -75,8 +77,8 @@ dns:
   proxy-server-nameserver: &direct [https://dns.alidns.com/dns-query, https://doh.pub/dns-query] # 用于节点的域名解析,其他 DNS 如需过代理查询时则配置该项以防出现鸡蛋问题
   nameserver: &proxy [https://cloudflare-dns.com/dns-query, https://dns.cloudflare.com/dns-query] # 默认域名解析,如不配置 fallback/proxy-server-nameserver,则都由 nameserver 解析
   nameserver-policy: { 'rule-set:site_private,site_cn': *direct }
-  direct-nameserver: *direct # 配置后会重新解析
-  direct-nameserver-follow-policy: true # 如果遵循 nameserver-policy 则 np 的直连不会被 dn 重新解析,此时 dn 用于其余的直连最终解析
+  # direct-nameserver: *direct # 配置后直连出站会使用它重新解析
+  # direct-nameserver-follow-policy: true # 如果遵循 nameserver-policy 则 np 的直连不会被 dn 重新解析,此时 dn 用于其余的直连最终解析
 
 tun:
   enable: true
@@ -183,7 +185,7 @@ proxy-groups-anchor:
     # - &type_lb-ch { type: load-balance, strategy: consistent-hashing, url: 'https://connectivitycheck.android.com/generate_204', interval: 150, timeout: 3500, max-failed-times: 2, expected-status: 204 }
     # - &type_lb-ss { type: load-balance, strategy: sticky-sessions, url: 'https://connectivitycheck.android.com/generate_204', interval: 150, timeout: 3500, max-failed-times: 2, expected-status: 204 }
   proxies_anchor:
-    - &rule { proxies: [PASS, Proxy, Local] }
+    - &rule { proxies: [PASS, Proxy, Local, 香港, 台湾, 韩国, 日本, 狮城, 美国] }
     - &direct { proxies: [Local, Proxy, PASS, 香港, 台湾, 韩国, 日本, 狮城, 美国] }
     - &proxy { proxies: [Proxy, Local, PASS, 香港, 台湾, 韩国, 日本, 狮城, 美国] }
     - &out { proxies: [香港, 台湾, 韩国, 日本, 狮城, 美国] }
@@ -393,6 +395,7 @@ rule-providers:
       - DOMAIN-SUFFIX,adobestats.io
       - DOMAIN,cc-api-data.adobe.io
       - DOMAIN,wetype.weixin.qq.com # 微信输入法
+      - IP-CIDR,95.161.76.100/31,no-resolve # 防止 Telegram 转圈
   flexirule:
     type: inline
     <<: *rule
