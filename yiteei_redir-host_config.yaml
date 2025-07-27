@@ -77,8 +77,8 @@ dns:
   proxy-server-nameserver: &direct [https://dns.alidns.com/dns-query, https://doh.pub/dns-query] # 用于节点的域名解析,其他 DNS 如需过代理查询时则配置该项以防出现鸡蛋问题
   nameserver: &proxy [https://cloudflare-dns.com/dns-query, https://dns.cloudflare.com/dns-query] # 默认域名解析,如不配置 fallback/proxy-server-nameserver,则都由 nameserver 解析
   nameserver-policy: { 'rule-set:site_private,site_cn': *direct }
-  # direct-nameserver: *direct # 配置后直连出站会使用它重新解析
-  # direct-nameserver-follow-policy: true # 如果遵循 nameserver-policy 则 np 的直连不会被 dn 重新解析,此时 dn 用于其余的直连最终解析
+  direct-nameserver: *direct # 配置后直连出站会使用它重新解析
+  direct-nameserver-follow-policy: true # 如果遵循 nameserver-policy 则 np 的直连不会被 dn 重新解析,此时 dn 用于其余的直连最终解析
 
 tun:
   enable: true
