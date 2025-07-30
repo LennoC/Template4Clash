@@ -16,7 +16,7 @@ proxy-providers:
     url: "此处填入你的订阅地址"
 
 mixed-port: 7890
-ipv6: true
+ipv6: false
 log-level: silent
 allow-lan: true
 skip-auth-prefixes:
@@ -37,8 +37,6 @@ profile:
 
 sniffer:
   enable: true
-  force-dns-mapping: false
-  parse-pure-ip: true
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -61,14 +59,17 @@ tun:
 dns:
   enable: true
   cache-algorithm: arc
-  ipv6: true
-  respect-rules: true
+  ipv6: false
   listen: 0.0.0.0:1053
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.0/15
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.ts.net"
+    - "+.market.xiaomi.com"
   nameserver:
-    - "https://208.67.222.2/dns-query"
-    - "https://9.9.9.9/dns-query"
-  proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
   nameserver-policy:
