@@ -32,26 +32,6 @@ external-ui: ./ui # WebUI 的保存路径
 external-ui-url: 'https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip' # WebUI 下载地址
 # secret: 'cat' # API 的访问密钥
 
-tunnels:
-  # sni 代理隧道
-  - tcp/udp,0.0.0.0:443,fake-domain.com:443
-  - tcp/udp,0.0.0.0:80,fake-domain.com:80
-  - tcp/udp,0.0.0.0:8443,fake-domain.com:8443
-  - tcp/udp,0.0.0.0:8080,fake-domain.com:8080
-
-sniffer:
-  # 域名嗅探,通过读取握手包内的域名字段,将 IP 还原成域名,便于进行域名分流
-  enable: true
-  # override-destination: false # 是否使用嗅探结果作为实际访问,默认  true
-  force-domain: [fake-domain.com] # 需要强制嗅探的域名 默认只对IP进行嗅探
-  skip-domain: # 遇到 sni 字段为列表中的内容,保留原始的 mapping 结果,不使用嗅探获取的内容覆盖现有的 mapping 结果
-    - '+.push.apple.com'
-    - 'Mijia Cloud'
-    - 'dlg.io.mi.com'
-  force-dns-mapping: false # 对 redir-host 类型识别的流量进行强制嗅探
-  parse-pure-ip: false # 对所有未获取到域名的流量进行强制嗅探
-  sniff: { TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] }, HTTP: { ports: [80, 8080-8880] } }
-
 hosts:
   # 支持单域名多 IP,格式为数组; 支持域名通配符,不使用通配符的域名优先级高于使用通配符的域名
   # 'doh.pub': ['1.12.12.12','120.53.53.53','2402:4e00::']
@@ -75,7 +55,7 @@ dns:
   # cache-algorithm: arc # 缓存算法,默认 lru
   default-nameserver: [223.5.5.5, 119.29.29.29] # 用于解析其它 DNS 为域名类型的 DNS,必须为 IP类型,可为加密 DNS
   proxy-server-nameserver: &direct [https://dns.alidns.com/dns-query, https://doh.pub/dns-query] # 用于节点的域名解析,其他 DNS 如需过代理查询时则配置该项以防出现鸡蛋问题
-  nameserver: &proxy [https://cloudflare-dns.com/dns-query, https://dns.cloudflare.com/dns-query] # 默认域名解析,如不配置 fallback/proxy-server-nameserver,则都由 nameserver 解析
+  nameserver: &proxy [https://odoh.cloudflare-dns.com/dns-query] # 默认域名解析,如不配置 fallback/proxy-server-nameserver,则都由 nameserver 解析
   nameserver-policy: { 'rule-set:site_private,site_cn': *direct }
   direct-nameserver: *direct # 配置后直连出站会使用它重新解析
   direct-nameserver-follow-policy: true # 如果遵循 nameserver-policy 则 np 的直连不会被 dn 重新解析,此时 dn 用于其余的直连最终解析
@@ -407,7 +387,6 @@ rules:
   - AND,((DST-PORT,53),(NOT,((IN-TYPE,Inner)))),dns-hijack # 劫持 DNS 到 Clash 内部 DNS 模块
   - RULE-SET,ip_private,Local,no-resolve # 局域网..
   - RULE-SET,site_private,Local
-  - DOMAIN,fake-domain.com,REJECT # 白名单模式 fake-domain.com 表示没嗅探到域名,拒绝DNS 框架下工作
   - AND,((NETWORK,udp),(RULE-SET,site_webrtc)),WebRTC # 是否禁用 stun/turn 协议的 UDP 数据,禁用后可以有效解决 WebRTC 的 IP 泄露
   - RULE-SET,flexireject,REJECT-DROP # 自定义拦截
   - RULE-SET,site_ad,Advert
