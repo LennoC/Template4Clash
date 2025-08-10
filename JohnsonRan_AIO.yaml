@@ -20,9 +20,9 @@ ipv6: false
 log-level: warning
 allow-lan: true
 skip-auth-prefixes:
-- 127.0.0.1/8
-- 172.16.1.1/24
-- 172.20.10.1/24
+- 127.0.0.0/8
+- 172.16.0.0/12
+- 192.168.0.0/16
 unified-delay: true
 tcp-concurrent: true
 external-ui: ui
@@ -68,12 +68,17 @@ dns:
   fake-ip-filter: 
     - "ruleset:no-fakeip"
   nameserver:
-    - "https://101.34.254.32/ihtw"
+    - 223.5.5.5
+    - 119.29.29.29
+  direct-nameserver:
+    - system
   nameserver-policy:
     "*": 127.0.0.1#lo
     "+.lan": 127.0.0.1#lo
     "+.local": 127.0.0.1#lo
-    "+.ts.net": 127.0.0.1#tailscale0 
+    "+.ts.net": 127.0.0.1#tailscale0
+    "rule-set:ecs-no-cn":
+      - '223.5.5.5#ecs=61.221.31.1/24&ecs-override=true'
 
 ntp:
   enable: true
@@ -123,6 +128,7 @@ rules:
   - RULE-SET,httpdns,ADBlock
   - RULE-SET,category-cngames,DIRECT
   - RULE-SET,win-update,DIRECT
+  - RULE-SET,apple-cn,DIRECT
   - RULE-SET,speedtest,Speedtest
   - RULE-SET,apple_proxy,Apple
   - RULE-SET,biliintl,节点选择
@@ -248,3 +254,7 @@ rule-providers:
   no-fakeip:
     <<: *domaintxt
     url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/no-fakeip.txt"
+  ecs-no-cn:
+    <<: *domaintxt
+    url: "https://raw.ihtw.moe/raw.githubusercontent.com/JohnsonRan/CRules/master/rules/ecs-no-cn.txt"
+ 
