@@ -28,14 +28,26 @@ jobs:
             "https://raw.githubusercontent.com/JohnsonRan/CRules/refs/heads/master/config/AIB.yaml"
           curl -s -o "JohnsonRan_AIO.yaml" \
             "https://raw.githubusercontent.com/JohnsonRan/CRules/refs/heads/master/config/AIO.yaml"
+
           curl -s -o "Surfing_config.yaml" \
             "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/main/box_bll/clash/config.yaml"
           curl -s -o "akashaproxy_config.yaml" \
             "https://raw.githubusercontent.com/akashaProxy/akashaProxy/refs/heads/master/module/clash/config.yaml.example"
           curl -s -o "ClashMix_config.yaml" \
             "https://raw.githubusercontent.com/AXEVO/Clash-MIX/refs/heads/Clash-MIX-4.0/Clash/Clash%E9%85%8D%E7%BD%AE.yaml"
-          curl -s -o "iKelee_Clash_Sample_Configuration" \
+          curl -s -o "boxProxy_config.yaml" \
+            "https://raw.githubusercontent.com/boxproxy/box/refs/heads/master/box/mihomo/config.yaml"
+
+          curl -s -o "iKelee_Clash_Sample_Config.yaml" \
             "https://raw.githubusercontent.com/luestr/ProxyResource/refs/heads/main/Tool/Clash/Config/Clash_Sample_Configuration_By_iKeLee.yaml"
+
+          curl -s -o "666OS_OneSmart_Config.yaml" \
+            "https://raw.githubusercontent.com/666OS/YYDS/main/mihomo/config/OneSmart.yaml"
+          curl -s -o "666OS_OneSmart_Lite_Config.yaml" \
+            "https://raw.githubusercontent.com/666OS/YYDS/main/mihomo/config/OneSmart.yaml"
+          curl -s -o "HenryChiao_MihomoAIO_SmartProPlus_Config.yaml" \
+            "https://raw.githubusercontent.com/HenryChiao/MIHOMO_AIO/refs/heads/main/CONFIG/mihomopro.yaml"
+
 
       - name: 提交并推送更改
         run: |
