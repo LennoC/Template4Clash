@@ -34,9 +34,15 @@
 
 > Android透明代理模块的自带配置，供参考。
 
-| Surfing [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/Surfing_config.yaml) | akashaProxy [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/akashaproxy_config.yaml) | ClashMix [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/ClashMix_config.yaml) |
+| Surfing [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/Surfing_config.yaml) | boxProxy [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/boxProxy_config.yaml) | akashaProxy [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/akashaproxy_config.yaml) | ClashMix [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/ClashMix_config.yaml) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 新手友好、开箱即用的代理模块，规则/分组适合大众。            | box4root的fork，更新手友好，加入WiFi启停                     | 简单完备的配置，国家分组。                                   | 另一个开箱即用的代理模块，极简配置。                         |
+
+## 适用于 Smart 内核的配置
+
+| 666OS_OneSmart_Lite [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/666OS_OneSmart_Lite_Config.yaml) | 666OS_OneSmart[【跳转】](https://github.com/LennoC/Template4Clash/blob/main/666OS_OneSmart_Config.yaml) | HenryChiao_Mihomo_ProPlus[【跳转】](https://github.com/LennoC/Template4Clash/blob/main/HenryChiao_MihomoAIO_SmartProPlus_Config.yaml) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 新手友好、开箱即用的代理模块，规则/分组适合大众。            | 简单完备的配置，国家分组。                                   | 另一个开箱即用的代理模块，极简配置。                         |
+| 极简版（Smart核心专用），基于全功能版本精简而来，保留核心功能，简单上手，开箱即用 | 全能版（Smart核心专用），需要有一定基础修改配置实现更多隐藏玩法 | 参考 666OS/YYDS 的高大全配置而修改的版本                     |
 
 
 
@@ -50,22 +56,14 @@
 
 https://wiki.metacubex.one/config/
 
+# Smart 内核
 
+Smart 内核 Wiki： https://github.com/vernesong/OpenClash/releases/tag/mihomo
+
+Smart 内核下载： https://github.com/vernesong/mihomo/releases
 
 # 配置来源
 
-[mihomoWiki快捷配置](https://wiki.metacubex.one/example/conf/)
-
-[JohnsonRan](https://github.com/JohnsonRan/CRules/tree/master/config)
-
-[yiteei](https://github.com/yiteei/Share/tree/Proxy/config)
-
-[iKelee](https://github.com/luestr/ProxyResource/tree/main/Tool/Clash/Config)
-
-[surfing](https://github.com/GitMetaio/Surfing)
-
-[akashaProxy](https://github.com/akashaProxy/akashaProxy)
-
-[clashMix](https://github.com/AXEVO/Clash-MIX/tree/Clash-MIX-4.0/Clash)
+[mihomoWiki快捷配置](https://wiki.metacubex.one/example/conf/) /[JohnsonRan](https://github.com/JohnsonRan/CRules/tree/master/config) / [yiteei](https://github.com/yiteei/Share/tree/Proxy/config) / [iKelee](https://github.com/luestr/ProxyResource/tree/main/Tool/Clash/Config) / [surfing](https://github.com/GitMetaio/Surfing) / [akashaProxy](https://github.com/akashaProxy/akashaProxy) / [clashMix](https://github.com/AXEVO/Clash-MIX/tree/Clash-MIX-4.0/Clash) / [boxProxy](https://github.com/boxproxy/box) / [666OS](https://github.com/666OS/YYDS) / [HenryChiao](https://github.com/HenryChiao/MIHOMO_AIO/)
 
 以及所有乐于分享的热心网友，**感谢他们**！
