@@ -1,0 +1,307 @@
+pr: &pr
+  proxies: [主要节点, 手动切换, 自动选择, 故障转移组, 自动选择_香港, 自动选择_台湾, 自动选择_新加坡, 自动选择_日本, 自动选择_美国, 国内直连, REJECT]
+
+p: &p
+  type: http
+  interval: 86400
+  health-check:
+    enable: true
+    url: https://cp.cloudflare.com
+    interval: 300
+    timeout: 1000
+    tolerance: 100
+
+proxy-anchor:
+  use: &use
+    use: [proxy1]
+  
+  select_use: &select_use
+    type: select
+    <<: *use
+
+  select_proxy: &select_proxy
+    type: select
+    <<: *pr
+
+  auto_use: &auto_use
+    type: url-test
+    <<: *use
+
+proxy-providers:
+  proxy1:
+    <<: *p
+    path: ./proxy_provider/proxy1.yaml
+    url: "此处填写订阅链接"
+
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
+mode: Rule
+bind-address: '*'
+ipv6: true
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+log-level: error
+find-process-mode: always
+global-client-fingerprint: random
+external-controller: 0.0.0.0:9090
+secret: ""
+external-ui: ./dashboard
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+
+tun:
+  enable: false
+  device: meta
+  stack: mixed
+  dns-hijack: [any:53, tcp://any:53]
+  udp-timeout: 300
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: true
+
+dns:
+  enable: true
+  prefer-h3: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 192.18.0.0/15
+  fake-ip-filter:
+    - "rule-set:Fake-IP-Filter"
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  nameserver-policy:
+    "rule-set:cn_domain":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "rule-set:private_domain":
+      - system
+    "rule-set:awavenue":
+      - rcode://success
+  nameserver:
+    - https://cloudflare-dns.com/dns-query#DNS
+    - https://dns.google/dns-query#DNS
+
+proxies:
+  - {name: DNS_Hijack, type: dns}
+
+proxy-groups:
+  - name: Ai
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/AI.png
+
+  - name: FCM推送
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Mail.png
+
+  - name: 谷歌服务
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Google_Search.png
+
+  - name: 微软服务
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Microsoft.png
+
+  - name: GITHUB
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/GitHub.png
+
+  - name: 油管视频
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/YouTube.png
+
+  - name: 奈飞视频
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Netflix.png
+
+  - name: 电报消息
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Telegram.png
+
+  - name: 国外代理
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Proxy.png
+
+  - name: 国内直连
+    type: select
+    proxies: [DIRECT, REJECT]
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/China.png
+
+  - name: DNS
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Domestic.png
+
+  - name: 广告拦截
+    type: select
+    proxies: [REJECT, 国内直连, REJECT-DROP, PASS]
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Reject.png
+
+  - name: 漏网之鱼
+    <<: *select_proxy
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Final.png
+
+  - name: 主要节点
+    type: select
+    proxies: [自动选择, 手动切换, 故障转移组, 自动选择_香港, 自动选择_台湾, 自动选择_新加坡, 自动选择_日本, 自动选择_美国, 国内直连, REJECT]
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Star.png
+
+  - name: 手动切换
+    <<: *select_use
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Rocket.png
+
+  - name: 故障转移组
+    type: fallback
+    proxies: [自动选择_香港, 自动选择_台湾, 自动选择_新加坡, 自动选择_日本, 自动选择_美国]
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Back.png
+
+  - name: 自动选择_香港
+    <<: *auto_use
+    filter: "(?i)(香港|hong kong|hk|hksar)"
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Hong_Kong.png
+
+  - name: 自动选择_台湾
+    <<: *auto_use
+    filter: "(?i)(台湾|taiwan|tw|twn|台北|taipei|高雄|kaohsiung|台中|taichung|新北|new taipei)"
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Taiwan.png
+
+  - name: 自动选择_新加坡
+    <<: *auto_use
+    filter: "(?i)(新加坡|狮城|singapore|sg|sgp)"
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Singapore.png
+
+  - name: 自动选择_日本
+    <<: *auto_use
+    filter: "(?i)(日本|japan|jpn|jp|tokyo|大阪|osaka|京都|kyoto|福冈|fukuoka|札幌|sapporo|名古屋|nagoya)"
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Japan.png
+
+  - name: 自动选择_美国
+    <<: *auto_use
+    filter: "(?i)(美国|united states|usa|us|america|加州|california|纽约|new york|德克萨斯|texas|佛罗里达|florida|华盛顿|washington|芝加哥|chicago|洛杉矶|los angeles|旧金山|san francisco)"
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/United_States.png
+
+  - name: 自动选择
+    <<: *auto_use
+    icon: https://gitlab.com/akikawa/backup/-/raw/main/IconSet/Color/Auto.png
+
+rule-anchor:
+  classical: &classical
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+
+  ipcidr: &ipcidr
+    type: http
+    behavior: ipcidr
+    format: mrs
+    interval: 86400
+
+  domain: &domain
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+
+rule-providers:
+  Ai:
+    <<: *domain
+    path: ./rule_provider/ai.mrs
+    url: "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/refs/heads/mihomo-ruleset/ai.mrs"
+  Fake-IP-Filter:
+    <<: *domain
+    path: ./rule_provider/Fake-IP-Filter.mrs
+    url: "https://github.com/DustinWin/ruleset_geodata/raw/refs/heads/mihomo-ruleset/fakeip-filter.mrs"
+  netflix_ip:
+    <<: *ipcidr
+    path: ./rule_provider/netflix_ip.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/netflix.mrs"
+  netflix_domain:
+    <<: *domain
+    path: ./rule_provider/netflix_domain.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/netflix.mrs"
+  telegram_ip:
+    <<: *ipcidr
+    path: ./rule_provider/telegram_ip.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/telegram.mrs"
+  telegram_domain:
+    <<: *domain
+    path: ./rule_provider/telegram_domain.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/telegram.mrs"
+  github_domain:
+    <<: *domain
+    path: ./rule_provider/github_domain.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/github.mrs"
+  youtube_domain:
+    <<: *domain
+    path: ./rule_provider/youtube_domain.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/youtube.mrs"
+  google_ip:
+    <<: *ipcidr
+    path: ./rule_provider/google_ip.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"
+  google_domain:
+    <<: *domain
+    path: ./rule_provider/google_domain.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"
+  microsoft_domain:
+    <<: *domain
+    path: ./rule_provider/microsoft_domain.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/microsoft.mrs"
+  cn_ip:
+    <<: *ipcidr
+    path: ./rule_provider/cn_ip.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.mrs"
+  private_ip:
+    <<: *ipcidr
+    path: ./rule_provider/private_ip.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/private.mrs"
+  cn_domain:
+    <<: *domain
+    path: ./rule_provider/cn_domain.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/cn.mrs"
+  private_domain:
+    <<: *domain
+    path: ./rule_provider/private_domain.mrs
+    url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/private.mrs"
+  awavenue:
+    <<: *domain
+    path: ./rule_provider/awavenue.mrs
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs"
+  
+rules:
+  - DST-PORT,53,DNS_Hijack
+  - DST-PORT,5228,FCM推送
+  - DOMAIN-REGEX,^.*mtalk.google.com,FCM推送
+  - DOMAIN-SUFFIX,linux.do,国外代理
+  - DOMAIN-SUFFIX,akikawa.asia,国内直连
+  - DOMAIN-SUFFIX,omarea.com,国外代理
+  - DOMAIN-SUFFIX,parkson-market.org,国内直连
+  - RULE-SET,Ai,Ai
+  - OR,((RULE-SET,netflix_ip,no-resolve),(RULE-SET,netflix_domain)),奈飞视频
+  - OR,((RULE-SET,telegram_ip,no-resolve),(RULE-SET,telegram_domain)),电报消息
+  - RULE-SET,github_domain,GITHUB
+  - RULE-SET,youtube_domain,油管视频
+  - OR,((RULE-SET,google_ip,no-resolve),(RULE-SET,google_domain)),谷歌服务
+  - RULE-SET,microsoft_domain,微软服务
+  - RULE-SET,awavenue,广告拦截
+  - OR,((RULE-SET,cn_ip),(RULE-SET,cn_domain),(RULE-SET,private_ip),(RULE-SET,private_domain)),国内直连
+  - MATCH,漏网之鱼

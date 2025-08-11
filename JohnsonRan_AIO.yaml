@@ -67,11 +67,16 @@ dns:
   fake-ip-range: 198.18.0.0/15
   fake-ip-filter: 
     - "ruleset:no-fakeip"
+  respect-rules: true
   nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+    - https://9.9.9.12/dns-query
+    - https://208.67.222.2/dns-query
   direct-nameserver:
     - system
+    - 223.5.5.5
+  proxy-server-nameserver:
+    - system
+    - 223.5.5.5
   nameserver-policy:
     "*": 127.0.0.1#lo
     "+.lan": 127.0.0.1#lo
