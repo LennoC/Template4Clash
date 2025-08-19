@@ -132,7 +132,7 @@ rules:
   - RULE-SET,httpdns,ADBlock
   - RULE-SET,category-cngames,DIRECT
   - RULE-SET,win-update,DIRECT
-  - RULE-SER,apple-cn,DIRECT
+  - RULE-SET,apple-cn,DIRECT
   - RULE-SET,speedtest,Speedtest
   - RULE-SET,apple_proxy,Apple
   - RULE-SET,biliintl,节点选择
