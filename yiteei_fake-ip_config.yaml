@@ -27,6 +27,7 @@ external-controller: 127.0.0.1:9494 # API 监听地址
 external-controller-cors: # API CORS 标头配置
   allow-origins: # 允许哪些前端页面的域名访问 API
     - 127.0.0.1
+    - https://board.zash.run.place
   allow-private-network: false
 external-ui: ./ui # WebUI 的保存路径
 external-ui-url: 'https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip' # WebUI 下载地址
@@ -46,7 +47,7 @@ hosts:
 dns:
   # 使用 DoH、DoT、DoQ 协议比传统基于 UDP 的查询更消耗系统资源，且延迟通常更高
   enable: true # 如为 false,则使用系统 DNS 解析
-  listen: 0.0.0.0:53
+  # listen: 0.0.0.0:53
   ipv6: true # false 将返回 AAAA 的空结果
   respect-rules: true # dns 连接遵守路由规则,需配置 proxy-server-nameserver
   enhanced-mode: fake-ip # DNS 处理模式 redir-host/fake-ip,Meta 回滚了 Redir Host 部分代码,仍然保留 Clash v1.70 以前的 Redir Host 模式的域名传递行为
@@ -55,7 +56,7 @@ dns:
   # cache-algorithm: arc # 缓存算法,默认 lru
   default-nameserver: [223.5.5.5, 119.29.29.29] # 用于解析其它 DNS 为域名类型的 DNS,必须为 IP类型,可为加密 DNS
   proxy-server-nameserver: &direct [https://dns.alidns.com/dns-query, https://doh.pub/dns-query] # 用于节点的域名解析,其他 DNS 如需过代理查询时则配置该项以防出现鸡蛋问题
-  nameserver: &proxy [https://odoh.cloudflare-dns.com/dns-query] # 默认域名解析,如不配置 fallback/proxy-server-nameserver,则都由 nameserver 解析
+  nameserver: &proxy [https://1.0.0.1/dns-query, https://8.8.4.4/dns-query] # 默认域名解析,如不配置 fallback/proxy-server-nameserver,则都由 nameserver 解析
   nameserver-policy: { 'rule-set:site_private,site_cn': *direct }
   direct-nameserver: *direct # 配置后直连出站会使用它重新解析
   direct-nameserver-follow-policy: true # 如果遵循 nameserver-policy 则 np 的直连不会被 dn 重新解析,此时 dn 用于其余的直连最终解析
@@ -94,10 +95,10 @@ proxy-providers-anchor:
   - &inline-base
     proxy: Update # 用于更新的策略或出站
     interval: 43200 # 更新 provider 的间隔,单位 s  Tip: 设置的过于小可能被机场 ban
-    filter: '(?:🇭🇰|港|(?i:\b(?:hk|hkg|hong|hongkong)\b))`(?:🇹🇼|台|高雄|(?i:\b(?:tw|twn|tai|taiwan)\b))`(?:🇰🇷|韩国|南韩|首尔|釜山|(?i:\b(?:kr|kor|korea|South\s*Korea)\b))`(?:🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(?i:\b(?:jp|jpn|japan)\b))`(?:🇸🇬|新加坡|狮|(?i:\b(?:sg|sgp|singapore)\b))`(?:🇺🇸|美|凤凰城|硅谷|洛杉矶|西雅图|芝加哥|(?i:\b(?:us|usa|united\s*states)\b))'
+    # filter: '(?:🇭🇰|港|(?i:\b(?:hk|hkg|hong|hongkong)\b))`(?:🇹🇼|台|高雄|(?i:\b(?:tw|twn|tai|taiwan)\b))`(?:🇰🇷|韩国|南韩|首尔|釜山|(?i:\b(?:kr|kor|korea|South\s*Korea)\b))`(?:🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(?i:\b(?:jp|jpn|japan)\b))`(?:🇸🇬|新加坡|狮|(?i:\b(?:sg|sgp|singapore)\b))`(?:🇺🇸|美|凤凰城|硅谷|洛杉矶|西雅图|芝加哥|(?i:\b(?:us|usa|united\s*states)\b))'
     # exclude-filter: '(?:流量|期|知|告|入|群|邀|返|循环|官|客|站|址|获|订|机场|下次|版本|备用|已|联系|邮|服务|工单|贩卖|导航|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|作者|(?i:\b(?:use|used|tg|total|expire|email|panel|channel|website|author|update)\b)|\b\d{4}-\d{2}-\d{2}\b|\d+G)' # 引入筛选/排除,使用筛选可能会在一定程度上增加CPU占用/转发延迟,尤其是使用较为复杂正则的情况下
     exclude-type: 'direct' # 排除匹配 type 的节点,用 | 分隔
-    health-check: { enable: true, url: 'https://connectivitycheck.android.com/generate_204', interval: 150, timeout: 3500, expected-status: 204 } # 延迟检测
+    health-check: { enable: true, url: 'https://connectivitycheck.android.com/generate_204', interval: 90, timeout: 3500, expected-status: 204 } # 延迟检测
     header: { User-Agent: ['mihomo/9.99.9 clash.meta/9.99.9 ClashMeta/9.99.9 FlClash/9.99.9 clash-verge/9.99.9'] } # 自定义 HTTP 请求头
   - &override { udp: true } # 覆写节点内容
   # - &override-proxy-name # 对节点名称内容进行替换
@@ -159,11 +160,11 @@ proxy-providers:
 proxy-groups-anchor:
   # 锚点 如合并时有重复的项,则不会去合并; 锚点名尽量不要含特殊字符
   type_anchor:
-    - &type_ut { type: url-test, url: 'https://connectivitycheck.android.com/generate_204', interval: 150, timeout: 3500, max-failed-times: 2, expected-status: 204, tolerance: 10 }
-    - &type_fb { type: fallback, url: 'https://connectivitycheck.android.com/generate_204', interval: 100, timeout: 3500, max-failed-times: 2, expected-status: 204 }
-    - &type_lb-rr { type: load-balance, strategy: round-robin, url: 'https://connectivitycheck.android.com/generate_204', interval: 150, timeout: 3500, max-failed-times: 2, expected-status: 204 }
-    # - &type_lb-ch { type: load-balance, strategy: consistent-hashing, url: 'https://connectivitycheck.android.com/generate_204', interval: 150, timeout: 3500, max-failed-times: 2, expected-status: 204 }
-    # - &type_lb-ss { type: load-balance, strategy: sticky-sessions, url: 'https://connectivitycheck.android.com/generate_204', interval: 150, timeout: 3500, max-failed-times: 2, expected-status: 204 }
+    - &type_ut { type: url-test, url: 'https://connectivitycheck.android.com/generate_204', interval: 90, timeout: 3500, max-failed-times: 2, expected-status: 204, tolerance: 10 }
+    - &type_fb { type: fallback, url: 'https://connectivitycheck.android.com/generate_204', interval: 90, timeout: 3500, max-failed-times: 2, expected-status: 204 }
+    - &type_lb-rr { type: load-balance, strategy: round-robin, url: 'https://connectivitycheck.android.com/generate_204', interval: 90, timeout: 3500, max-failed-times: 2, expected-status: 204 }
+    # - &type_lb-ch { type: load-balance, strategy: consistent-hashing, url: 'https://connectivitycheck.android.com/generate_204', interval: 90, timeout: 3500, max-failed-times: 2, expected-status: 204 }
+    # - &type_lb-ss { type: load-balance, strategy: sticky-sessions, url: 'https://connectivitycheck.android.com/generate_204', interval: 90, timeout: 3500, max-failed-times: 2, expected-status: 204 }
   proxies_anchor:
     - &rule { proxies: [PASS, Proxy, Local, 香港, 台湾, 韩国, 日本, 狮城, 美国] }
     - &direct { proxies: [Local, Proxy, PASS, 香港, 台湾, 韩国, 日本, 狮城, 美国] }

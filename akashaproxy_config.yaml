@@ -46,7 +46,7 @@ profile:
 external-controller: 127.0.0.1:9090
 # external-ui: yacd
 external-ui: zashboard #使用zashboard为本地管理ui
-external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
+external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 bind-address: "*"
 
 # tun虚拟网卡设置 不懂默认就好 默认开启tun
