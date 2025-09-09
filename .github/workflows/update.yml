@@ -42,12 +42,16 @@ jobs:
             "https://raw.githubusercontent.com/luestr/ProxyResource/refs/heads/main/Tool/Clash/Config/Clash_Sample_Configuration_By_iKeLee.yaml"
 
           curl -s -o "666OS_OneSmart_Config.yaml" \
-            "https://raw.githubusercontent.com/666OS/YYDS/main/mihomo/config/OneSmart.yaml"
+            "https://raw.githubusercontent.com/666OS/YYDS/main/mihomo/config/OneSmartPro.yaml"
           curl -s -o "666OS_OneSmart_Lite_Config.yaml" \
             "https://raw.githubusercontent.com/666OS/YYDS/main/mihomo/config/OneSmart.yaml"
           curl -s -o "HenryChiao_MihomoAIO_SmartProPlus_Config.yaml" \
             "https://raw.githubusercontent.com/HenryChiao/MIHOMO_AIO/refs/heads/main/CONFIG/mihomopro.yaml"
 
+          curl -s -o "666OS_MihomoPro_Config.yaml" \
+            "https://raw.githubusercontent.com/666OS/YYDS/main/mihomo/config/MihomoPro.yaml"
+          curl -s -o "666OS_Mihomo_OneTouch_Config.yaml" \
+            "https://raw.githubusercontent.com/666OS/YYDS/main/mihomo/config/OneTouch.yaml"
 
       - name: 提交并推送更改
         run: |
