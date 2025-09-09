@@ -19,7 +19,7 @@ geo-auto-update: true
 geo-update-interval: 24
 geox-url:
   geoip: "https://gcore.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
-  geosite: "https://gcore.jsdelivr.net/gh/elysias123/geosite@release/geosite.dat"
+  geosite: "https://gcore.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
   mmdb: "https://gcore.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
 
 # 域名嗅探 https://wiki.metacubex.one/config/sniff/#_1
@@ -46,17 +46,19 @@ profile:
 external-controller: 127.0.0.1:9090
 # external-ui: yacd
 external-ui: zashboard #使用zashboard为本地管理ui
-external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/download/v1.92.0/dist-cdn-fonts.zip"
+external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 bind-address: "*"
 
 # tun虚拟网卡设置 不懂默认就好 默认开启tun
 tun:
   enable: true
-  device: Meta
-  stack: mixed
+  device: mihoyo
+  stack: system
   dns-hijack:
-    - any:53
+    - 0.0.0.0:53
   auto-route: true
+  # strict-route: true
+  auto-redirect: true
   auto-detect-interface: true
 
 # https://wiki.metacubex.one/config/dns/hosts/#hosts
@@ -68,26 +70,24 @@ hosts:
   cloudflare-dns.com: [1.1.1.1, 1.0.0.1, 2606:4700:4700::1111, 2606:4700:4700::1001]
   "*.cloudflare-gateway.com": [162.159.36.20, 162.159.36.5, 2606:4700:5c::a29f:2e07, 2606:4700:54::a29f:2407]
 
-# 默认即可
 dns:
   enable: true
   listen: 0.0.0.0:53
   ipv6: true
   enhanced-mode: redir-host
-  fake-ip-range: 10.100.0.0/8
   default-nameserver:
-    - 119.29.29.29
+    - 120.53.53.53
     - 223.5.5.5
   nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - tls://dns.alidns.com
+    - tls://xxxxxxxx.cloudflare-gateway.com
   nameserver-policy:
-    "geosite:cn,private":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
-    "geosite:geolocation-!cn,gfw":
-      - "https://xxxxxxxxx.cloudflare-gateway.com/dns-query"
-      - "https://doh.18bit.cn/dns-query"
+    "geosite:cn,private,apple":
+      - tls://dot.pub
+      - tls://dns.alidns.com
+    "geosite:geolocation-!cn,gfw,!cn":
+      - "https://xxxxxxxx.cloudflare-gateway.com/dns-query"
+      - "https://dns.google/dns-query#dns"
 
 
 proxies:
@@ -199,18 +199,14 @@ rule-providers:
 # 分流规则
 rules:
   - GEOSITE,category-httpdns-cn,REJECT-DROP #屏蔽httpdns防止去广告失效
-  - RULE-SET,AWAvenue,屏蔽 #去广告
-  - GEOSITE,category-ads-EasyList,屏蔽 #去广告
-  - GEOSITE,category-ads-PeterLowe,屏蔽 #去广告
-  - GEOSITE,category-ads-DanPollock,屏蔽 #去广告
-#  - GEOSITE,category-ads-AdGuardDNSFilter,屏蔽 #去广告(数量有点多)
+  - RULE-SET,AWAvenue,屏蔽,no-resolve #去广告
   - GEOSITE,geolocation-!cn,proxy
   - GEOSITE,googlefcm,直连
   - GEOSITE,google-cn,直连
   - GEOSITE,apple-cn,直连
   - GEOSITE,category-games@cn,直连
   - GEOSITE,cn,直连
-  - GEOIP,PRIVATE,直连
+  - GEOIP,PRIVATE,直连,no-resolve
   - GEOIP,cn,DIRECT,no-resolve
   - MATCH,proxy
 
