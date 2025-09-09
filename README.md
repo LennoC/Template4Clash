@@ -1,4 +1,5 @@
 # Template4Clash
+
 适用于Clash Meta/Mihomo的配置收集
 
 # 配置简介
@@ -29,6 +30,13 @@
 > 主要维护Loon相关配置的作者提供的Mihomo配置参考，中等偏上复杂度。关键词：国家分组；众多策略组：自动策略、时延策略、故障转移、负载均衡。
 
 [【跳转点此】](https://github.com/LennoC/Template4Clash/blob/main/iKelee_Clash_Sample_Configuration)
+
+## 来自YYDS666的配置
+
+> 规则和策略组多而全，配置文件格式美观，参考自用都不错。
+
+| 高大全版： [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/666OS_MihomoPro_Config.yaml) | 一键连lite版： [【跳转】](https://github.com/LennoC/Template4Clash/blob/main/666OS_Mihomo_OneTouch_Config.yaml) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 
 ## 来自代理模块的配置
 
