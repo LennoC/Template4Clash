@@ -153,6 +153,7 @@ rules:
   - RULE-SET,steam,Steam
   - RULE-SET,gfwlist,节点选择
   - RULE-SET,cn_site,DIRECT
+  - RULE-SET,chinadomains,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - MATCH,MATCH
 
@@ -231,6 +232,9 @@ rule-providers:
   cn_site:
     <<: *mrs
     url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/cn.mrs"
+  chinadomains:
+    <<: *classicaltxt
+    url: "https://raw.ihtw.moe/github.com/Repcz/Tool/raw/X/mihomo/Rules/ChinaDomain.list" 
   cn_ip:
     <<: *mrsip
     url: "https://raw.ihtw.moe/github.com/ForestL18/rules-dat/raw/mihomo/asn/combined/China-ASN-combined.mrs"
@@ -241,11 +245,11 @@ rule-providers:
     <<: *mrs 
     url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/apple-cn.mrs"
   apple_proxy:
-    <<: *mrs
-    url: "https://git.ihtw.moe/JohnsonRan/CRules/raw/mihomo/rules/AppleProxy.mrs"
+    <<: *classicaltxt
+    url: "https://raw.ihtw.moe/github.com/Repcz/Tool/raw/X/mihomo/Rules/AppleProxy.list"
   speedtest:
-    <<: *mrs
-    url: "https://git.ihtw.moe/JohnsonRan/CRules/raw/mihomo/rules/speedtest.mrs"
+    <<: *domaintxt
+    url: "https://ruleset.skk.moe/Clash/domainset/speedtest.txt"
   gfwlist:
     <<: *mrs
     url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/gfw.mrs"
