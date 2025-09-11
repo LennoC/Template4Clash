@@ -1,5 +1,5 @@
 # mihomo 配置
-# 日期：2025-07-06 18:25:00
+# 日期：2025-09-11 16:09:49
 # 配置作者：https://t.me/iKeLee
 # 适用版本：所有使用 mihomo 核心的程序
 port: 7890
@@ -139,12 +139,11 @@ proxy-groups:
   - {name: 境外下载, type: select, include-all-providers: true, filter: *FilterAll, proxies: [DIRECT]}
   - {name: AI, type: select, include-all-providers: true, filter: *FilterAll}
   - {name: TikTok, type: select, include-all-providers: true, filter: *FilterAll}
-#  - {name: Telegram, type: select, proxies: [香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
+  - {name: SpeedtestIntl, type: select, include-all-providers: true, filter: *FilterAll, proxies: [DIRECT]}
   - {name: App Store, type: select, proxies: [DIRECT, 香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
   - {name: Apple账户, type: select, proxies: [DIRECT, 香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
   - {name: TestFlight, type: select, proxies: [DIRECT, 香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
   - {name: 1Password, type: select, proxies: [DIRECT, 香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
-#  - {name: Microsoft, type: select, proxies: [DIRECT, 香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
   - {name: Netflix, type: select, proxies: [香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
   - {name: Emby, type: select, proxies: [DIRECT, 香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
   - {name: 兜底后备策略, type: fallback, proxies: [香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
@@ -228,6 +227,11 @@ rule-providers:
     <<: *RuleProviders
     path: './rules/TikTok.yaml'
     url: 'https://kelee.one/Tool/Clash/Rule/TikTok.yaml'
+
+  SpeedtestIntl:
+    <<: *RuleProviders
+    path: './rules/SpeedtestInternational.yaml'
+    url: 'https://rule.kelee.one/Tool/Clash/Rule/SpeedtestInternational.yaml'
 
   Game:
     <<: *RuleProviders
@@ -313,6 +317,7 @@ rules:
   - RULE-SET, InternationalDownloadCDN, 境外下载
   - RULE-SET, AI, AI
   - RULE-SET, TikTok, TikTok
+  - RULE-SET, SpeedtestIntl, SpeedtestIntl
   - RULE-SET, Steam, 兜底后备策略
   - RULE-SET, Game, 游戏选择
   - RULE-SET, Netflix, Netflix

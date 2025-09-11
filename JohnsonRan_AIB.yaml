@@ -80,6 +80,7 @@ dns:
   nameserver-policy:
     "*": 127.0.0.1#lo
     "+.lan": 127.0.0.1#lo
+    "+.arpa": 127.0.0.1#lo
     "+.local": 127.0.0.1#lo
     "+.ts.net": 127.0.0.1#tailscale0
     "rule-set:ecs-no-cn":
