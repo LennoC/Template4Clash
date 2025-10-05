@@ -138,7 +138,6 @@ tun:
   exclude-package:
     - com.tencent.mm
     - com.tencent.mobileqq
-    - com.miui.securitycenter
     # _____________________# 三星专供 ↓ 范围
 #    - com.samsung.android.messaging
 #    - com.samsung.android.app.telephonyui
@@ -394,7 +393,7 @@ proxy-groups:
 
   - name: 智能·其它地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
-    filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
+    filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|拒绝|DNS|Ch)).*$"
     <<: *All
 
 # —————————
@@ -599,7 +598,7 @@ rules:
 
   - PROCESS-PATH,tv.danmaku.bili,BiliBili
   - RULE-SET,BiliBili_域,BiliBili
-  - RULE-SET,BiliBili_IP,BiliBili
+  - RULE-SET,BiliBili_IP,BiliBili,no-resolve
 
   - RULE-SET,Steam_域,Steam
 
@@ -610,42 +609,41 @@ rules:
   - RULE-SET,TikTok_域,TikTok
 
   - RULE-SET,Twitter_域,Twitter(X)
-  - RULE-SET,Twitter_IP,Twitter(X)
+  - RULE-SET,Twitter_IP,Twitter(X),no-resolve
 
   - RULE-SET,YouTube_域,YouTube
-  - RULE-SET,YouTube_IP,YouTube
+  - RULE-SET,YouTube_IP,YouTube,no-resolve
 
   - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
 
   - RULE-SET,Google_域,Google
-  - RULE-SET,Google_IP,Google
+  - RULE-SET,Google_IP,Google,no-resolve
 
   - RULE-SET,Netflix_域,Netflix
-  - RULE-SET,Netflix_IP,Netflix
+  - RULE-SET,Netflix_IP,Netflix,no-resolve
 
   - RULE-SET,Spotify_域,Spotify
-  - RULE-SET,Spotify_IP,Spotify
+  - RULE-SET,Spotify_IP,Spotify,no-resolve
 
   - RULE-SET,Facebook_域,Facebook
-  - RULE-SET,Facebook_IP,Facebook
+  - RULE-SET,Facebook_IP,Facebook,no-resolve
 
   - RULE-SET,OpenAI_域,OpenAI
-  - RULE-SET,OpenAI_IP,OpenAI
+  - RULE-SET,OpenAI_IP,OpenAI,no-resolve
 
   - RULE-SET,Apple_域,Apple
-  - RULE-SET,Apple_IP,Apple
+  - RULE-SET,Apple_IP,Apple,no-resolve
 
   - RULE-SET,Microsoft_域,Microsoft
 
   - RULE-SET,Telegram_域,Telegram
-  - RULE-SET,Telegram_IP,Telegram
+  - RULE-SET,Telegram_IP,Telegram,no-resolve
 
-  - DOMAIN,browserleaks.com,漏网之鱼
+  - RULE-SET,Private_域,🇨🇳 直连·Chinese
+  - RULE-SET,Private_IP,🇨🇳 直连·Chinese,no-resolve
 
   - RULE-SET,CN_域,🇨🇳 直连·Chinese
   - RULE-SET,CN_IP,🇨🇳 直连·Chinese
-  - RULE-SET,Private_域,🇨🇳 直连·Chinese
-  - RULE-SET,Private_IP,🇨🇳 直连·Chinese
 
   - MATCH,漏网之鱼
 # —————————
