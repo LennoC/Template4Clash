@@ -153,8 +153,8 @@ rules:
   - RULE-SET,steamcn,DIRECT
   - RULE-SET,steam,Steam
   - RULE-SET,gfwlist,节点选择
-  - RULE-SET,cn_site,DIRECT
   - RULE-SET,chinadomains,DIRECT
+  - RULE-SET,cn_site,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - MATCH,MATCH
 
@@ -235,7 +235,7 @@ rule-providers:
     url: "https://git.ihtw.moe/JohnsonRan/meta-rules-dat/raw/meta/geo/geosite/cn.mrs"
   chinadomains:
     <<: *classicaltxt
-    url: "https://raw.ihtw.moe/github.com/Repcz/Tool/raw/X/mihomo/Rules/ChinaDomain.list" 
+    url: "https://ruleset.skk.moe/Clash/non_ip/domestic.txt" 
   cn_ip:
     <<: *mrsip
     url: "https://raw.ihtw.moe/github.com/ForestL18/rules-dat/raw/mihomo/asn/combined/China-ASN-combined.mrs"
