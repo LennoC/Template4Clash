@@ -154,14 +154,14 @@ dns:
   enable: true
   ipv6: true
   listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
+  enhanced-mode: fake-ip # redir-host
   fake-ip-range: 172.20.0.1/16
   fake-ip-filter:
-    - "RULE-SET:CN_域"
     - "RULE-SET:Private_域"
     - "RULE-SET:GoogleFCM_域"
     - "+.3gppnetwork.org"
     - "+.xtracloud.net"
+    - "+.market.xiaomi.com"
   direct-nameserver:
     - https://doh.pub/dns-query#🌐 本机·本地直连&h3=false
     - https://dns.alidns.com/dns-query#🌐 本机·本地直连&h3=true
@@ -306,8 +306,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
     proxies:
-      - PASS
       - REJECT-DROP
+      - PASS
       - ⛔️ 禁止·拒绝连接
       - 🌐 DNS_Hijack
 
@@ -315,8 +315,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
     type: select
     proxies:
-      - PASS
       - REJECT-DROP
+      - PASS
       - ⛔️ 禁止·拒绝连接
       - 🌐 DNS_Hijack
 
@@ -567,13 +567,13 @@ rules:
   - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
 
-  - PROCESS-PATH,com.ss.android.ugc.aweme,抖音
+  - PROCESS-NAME,com.ss.android.ugc.aweme,抖音
   - RULE-SET,DouYin_域,抖音
 
-  - PROCESS-PATH,com.xingin.xhs,小红书
+  - PROCESS-NAME,com.xingin.xhs,小红书
   - RULE-SET,XiaoHongShu_域,小红书
 
-  - PROCESS-PATH,tv.danmaku.bili,BiliBili
+  - PROCESS-NAME,tv.danmaku.bili,BiliBili
   - RULE-SET,BiliBili_域,BiliBili
   - RULE-SET,BiliBili_IP,BiliBili,no-resolve
 
