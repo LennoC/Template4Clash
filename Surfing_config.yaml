@@ -131,8 +131,8 @@ tun:
   auto-redirect: false
   auto-detect-interface: true
   exclude-package: # 如黑白名单这里需排除
-    - com.tencent.mm
-    - com.tencent.mobileqq
+   # - com.tencent.mm
+   # - com.tencent.mobileqq
     # _____________________# 三星专供 ↓ 范围
 #    - com.samsung.android.messaging
 #    - com.samsung.android.app.telephonyui
@@ -343,7 +343,7 @@ proxy-groups:
 
   - name: ALL·中国台湾
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
-    filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
+    filter: "^(?=.*(台|新北|彰化|TW|Taiwan|taipei)).*$"
     <<: *All
 
   - name: ALL·香港地区
