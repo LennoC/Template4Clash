@@ -67,6 +67,8 @@ dns:
   fake-ip-range: 198.18.0.0/15
   fake-ip-filter: 
     - "ruleset:no-fakeip"
+    - "ruleset:chinadomains"
+    - "ruleset:cn_site"
   respect-rules: true
   nameserver:
     - https://8.8.8.8/dns-query
@@ -95,7 +97,7 @@ experimental:
   quic-go-disable-ecn: false
 
 proxy-groups:
-  - {name: 节点选择, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/sub(1).png, type: select, proxies: [自建, 香港, 台湾, 日本, 新加坡, 美国, DIRECT]}
+  - {name: 节点选择, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/sub(1).png, type: select, proxies: [自建, 香港, 台湾, 日本, 新加坡, 美国, 其他, DIRECT]}
   - {name: 自建, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/lightning(2).png, type: select, include-all-proxies: true, exclude-filter: "LAN"}
   - {name: 代理链, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/nike.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
   - {name: Speedtest, icon: https://git.ihtw.moe/JohnsonRan/QuanX-icon-rule/raw/main/icon/speedtest.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
