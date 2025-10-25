@@ -1,5 +1,5 @@
 # mihomo 配置
-# 日期：2025-09-11 16:09:49
+# 日期：2025-10-25 23:03:09
 # 配置作者：https://t.me/iKeLee
 # 适用版本：所有使用 mihomo 核心的程序
 port: 7890
@@ -120,7 +120,7 @@ FilterUK: &FilterUK '^(?=.*((?i)🇬🇧|英国|伦敦|(\b(UK|GBR|United Kingdom
 FilterFR: &FilterFR '^(?=.*((?i)🇫🇷|法国|(\b(FR|FRA|France)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterDE: &FilterDE '^(?=.*((?i)🇩🇪|德国|(\b(DE|DEU|Germany)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterGame: &FilterGame '^(?=.*((?i)游戏|🎮|(\b(GAME)(\d+)?\b)))(?!.*((?i)回国|校园)).*$'
-FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$'
+FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|失联|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$'
 
 # 策略组参数锚点
 # 锚点 - 时延优选参数 [每 6 秒一次惰性健康检查，容差 20ms，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
@@ -148,48 +148,15 @@ proxy-groups:
   - {name: Emby, type: select, proxies: [DIRECT, 香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
   - {name: 兜底后备策略, type: fallback, proxies: [香港自动策略, 台湾自动策略, 日本自动策略, 韩国自动策略, 新国自动策略, 美国自动策略, 英国自动策略, 法国自动策略, 德国自动策略]}
 
-  - {name: 香港自动策略, type: select, proxies: [⏱香港时延优选策略组, 🚥香港故障转移策略组, 🎛香港负载均衡策略组]}
-  - {name: 台湾自动策略, type: select, proxies: [⏱台湾时延优选策略组, 🚥台湾故障转移策略组, 🎛台湾负载均衡策略组]}
-  - {name: 日本自动策略, type: select, proxies: [⏱日本时延优选策略组, 🚥日本故障转移策略组, 🎛日本负载均衡策略组]}
-  - {name: 韩国自动策略, type: select, proxies: [⏱韩国时延优选策略组, 🚥韩国故障转移策略组, 🎛韩国负载均衡策略组]}
-  - {name: 新国自动策略, type: select, proxies: [⏱新国时延优选策略组, 🚥新国故障转移策略组, 🎛新国负载均衡策略组]}
-  - {name: 美国自动策略, type: select, proxies: [⏱美国时延优选策略组, 🚥美国故障转移策略组, 🎛美国负载均衡策略组]}
-  - {name: 英国自动策略, type: select, proxies: [⏱英国时延优选策略组, 🚥英国故障转移策略组, 🎛英国负载均衡策略组]}
-  - {name: 法国自动策略, type: select, proxies: [⏱法国时延优选策略组, 🚥法国故障转移策略组, 🎛法国负载均衡策略组]}
-  - {name: 德国自动策略, type: select, proxies: [⏱德国时延优选策略组, 🚥德国故障转移策略组, 🎛德国负载均衡策略组]}
-
-# 时延优选策略组
-  - {name: ⏱香港时延优选策略组, <<: *UrlTest, filter: *FilterHK}
-  - {name: ⏱台湾时延优选策略组, <<: *UrlTest, filter: *FilterTW}
-  - {name: ⏱日本时延优选策略组, <<: *UrlTest, filter: *FilterJP}
-  - {name: ⏱韩国时延优选策略组, <<: *UrlTest, filter: *FilterKR}
-  - {name: ⏱新国时延优选策略组, <<: *UrlTest, filter: *FilterSG}
-  - {name: ⏱美国时延优选策略组, <<: *UrlTest, filter: *FilterUS}
-  - {name: ⏱英国时延优选策略组, <<: *UrlTest, filter: *FilterUK}
-  - {name: ⏱法国时延优选策略组, <<: *UrlTest, filter: *FilterFR}
-  - {name: ⏱德国时延优选策略组, <<: *UrlTest, filter: *FilterDE}
-
-# 故障转移策略组
-  - {name: 🚥香港故障转移策略组, <<: *FallBack, filter: *FilterHK}
-  - {name: 🚥台湾故障转移策略组, <<: *FallBack, filter: *FilterTW}
-  - {name: 🚥日本故障转移策略组, <<: *FallBack, filter: *FilterJP}
-  - {name: 🚥韩国故障转移策略组, <<: *FallBack, filter: *FilterKR}
-  - {name: 🚥新国故障转移策略组, <<: *FallBack, filter: *FilterSG}
-  - {name: 🚥美国故障转移策略组, <<: *FallBack, filter: *FilterUS}
-  - {name: 🚥英国故障转移策略组, <<: *FallBack, filter: *FilterUK}
-  - {name: 🚥法国故障转移策略组, <<: *FallBack, filter: *FilterFR}
-  - {name: 🚥德国故障转移策略组, <<: *FallBack, filter: *FilterDE}
-
-# 负载均衡策略组
-  - {name: 🎛香港负载均衡策略组, <<: *LoadBalance, filter: *FilterHK}
-  - {name: 🎛台湾负载均衡策略组, <<: *LoadBalance, filter: *FilterTW}
-  - {name: 🎛日本负载均衡策略组, <<: *LoadBalance, filter: *FilterJP}
-  - {name: 🎛韩国负载均衡策略组, <<: *LoadBalance, filter: *FilterKR}
-  - {name: 🎛新国负载均衡策略组, <<: *LoadBalance, filter: *FilterSG}
-  - {name: 🎛美国负载均衡策略组, <<: *LoadBalance, filter: *FilterUS}
-  - {name: 🎛英国负载均衡策略组, <<: *LoadBalance, filter: *FilterUK}
-  - {name: 🎛法国负载均衡策略组, <<: *LoadBalance, filter: *FilterFR}
-  - {name: 🎛德国负载均衡策略组, <<: *LoadBalance, filter: *FilterDE}
+  - {name: 香港自动策略, <<: *UrlTest, filter: *FilterHK}
+  - {name: 台湾自动策略, <<: *UrlTest, filter: *FilterTW}
+  - {name: 日本自动策略, <<: *UrlTest, filter: *FilterJP}
+  - {name: 韩国自动策略, <<: *UrlTest, filter: *FilterKR}
+  - {name: 新国自动策略, <<: *UrlTest, filter: *FilterSG}
+  - {name: 美国自动策略, <<: *UrlTest, filter: *FilterUS}
+  - {name: 英国自动策略, <<: *UrlTest, filter: *FilterUK}
+  - {name: 法国自动策略, <<: *UrlTest, filter: *FilterFR}
+  - {name: 德国自动策略, <<: *UrlTest, filter: *FilterDE}
 
 # 订阅规则
 rule-providers:
@@ -231,7 +198,7 @@ rule-providers:
   SpeedtestIntl:
     <<: *RuleProviders
     path: './rules/SpeedtestInternational.yaml'
-    url: 'https://rule.kelee.one/Tool/Clash/Rule/SpeedtestInternational.yaml'
+    url: 'https://kelee.one/Tool/Clash/Rule/SpeedtestInternational.yaml'
 
   Game:
     <<: *RuleProviders
@@ -276,7 +243,7 @@ rule-providers:
   AppleID:
     <<: *RuleProviders
     path: './rules/AppleID.yaml'
-    url: 'https://kelee.one/Tool/Clash/Rule/AppleID.yaml'
+    url: 'https://kelee.one/Tool/Clash/Rule/AppleAccount.yaml'
 
   AppStore:
     <<: *RuleProviders
