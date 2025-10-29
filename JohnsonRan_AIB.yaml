@@ -66,9 +66,9 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/15
   fake-ip-filter: 
-    - "ruleset:no-fakeip"
-    - "ruleset:chinadomains"
-    - "ruleset:cn_site"
+    - "rule-set:no-fakeip"
+    - "rule-set:chinadomains"
+    - "rule-set:cn_site"
   respect-rules: true
   nameserver:
     - https://8.8.8.8/dns-query
