@@ -16,7 +16,7 @@ proxy-providers:
     url: "http://172.16.1.50:3001/D2UhuYViWtqwddacM4ss/download/collection/AIO"
 
 mixed-port: 7890
-ipv6: false
+ipv6: true
 log-level: warning
 allow-lan: true
 skip-auth-prefixes:
@@ -61,10 +61,11 @@ tun:
 dns:
   enable: true
   cache-algorithm: arc
-  ipv6: false
+  ipv6: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/15
+  fake-ip-range6: 2001:db8::/32
   fake-ip-filter: 
     - "rule-set:no-fakeip"
     - "rule-set:chinadomains"
