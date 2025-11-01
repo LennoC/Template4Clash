@@ -53,7 +53,9 @@ sniffer:
 
 tun:
   enable: true
-  stack: mixed
+  stack: system
+  gso: true
+  gso-max-size: 65536
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
