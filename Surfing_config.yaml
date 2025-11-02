@@ -41,8 +41,8 @@ p: &p
   interval: 86400
   health-check:
     enable: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
+    url: https://cp.cloudflare.com/generate_204
+    interval: 600
   proxy: 订阅更新
   header: # 如遇订阅加载不出来请切换ua
       User-Agent:  # 使用注释法由上到下 默认使用第一个
@@ -157,24 +157,41 @@ dns:
   enhanced-mode: fake-ip # redir-host
   fake-ip-range: 172.20.0.1/16
   fake-ip-filter:
+    - "RULE-SET:CN_域"
     - "RULE-SET:Private_域"
     - "RULE-SET:GoogleFCM_域"
     - "+.3gppnetwork.org"
     - "+.xtracloud.net"
     - "+.market.xiaomi.com"
-  direct-nameserver:
-    - https://doh.pub/dns-query#🌐 本机·本地直连&h3=false
-    - https://dns.alidns.com/dns-query#🌐 本机·本地直连&h3=true
   proxy-server-nameserver:
-    - https://doh.pub/dns-query#🌐 本机·本地直连&h3=false
-    - https://dns.alidns.com/dns-query#🌐 本机·本地直连&h3=true
+    - https://1.12.12.12:443/dns-query#🌐 本机·本地直连&h3=false
+    - https://120.53.53.53:443/dns-query#🌐 本机·本地直连&h3=false
+    - https://223.5.5.5:443/dns-query#🌐 本机·本地直连&h3=true
+    - https://223.6.6.6:443/dns-query#🌐 本机·本地直连&h3=true
   nameserver-policy:
     "RULE-SET:CN_域,Microsoft_域,Apple_域":
-       - https://doh.pub/dns-query#🌐 本机·本地直连&h3=false
-       - https://dns.alidns.com/dns-query#🌐 本机·本地直连&h3=true
+      - https://1.12.12.12:443/dns-query#🌐 本机·本地直连&h3=false
+      - https://120.53.53.53:443/dns-query#🌐 本机·本地直连&h3=false
+      - https://223.5.5.5:443/dns-query#🌐 本机·本地直连&h3=true
+      - https://223.6.6.6:443/dns-query#🌐 本机·本地直连&h3=true
   nameserver:
-    - https://dns.google/dns-query#DNS连接&h3=true
-    - https://cloudflare-dns.com/dns-query#DNS连接&h3=true
+    # Google
+    - https://8.8.8.8:443/dns-query#DNS连接&h3=true
+    - https://8.8.4.4:443/dns-query#DNS连接&h3=true
+    # Cloudflare
+    - https://1.1.1.1:443/dns-query#DNS连接&h3=true
+    - https://1.0.0.1:443/dns-query#DNS连接&h3=true
+  direct-nameserver:
+    # 你的本地
+    # 运营商 & 路由器网关
+    - 120.80.80.80  # ← 替换成你想用的 或者删除
+    - 221.5.88.88   # ← 替换成你想用的 或者删除
+    - 192.168.1.1
+    # ----------------
+    # 腾讯/阿里兜底
+    # 正确配置本地后可移除 否则会卡[可选]
+    - 1.12.12.12
+    - 223.6.6.6
 # —————————
 
 proxies:
@@ -306,19 +323,19 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
     proxies:
-      - REJECT-DROP
-      - PASS
       - ⛔️ 禁止·拒绝连接
       - 🌐 DNS_Hijack
+      - REJECT-DROP
+      - PASS
 
   - name: WebRTC
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
     type: select
     proxies:
-      - REJECT-DROP
-      - PASS
       - ⛔️ 禁止·拒绝连接
       - 🌐 DNS_Hijack
+      - REJECT-DROP
+      - PASS
 
   - name: ALL·延迟最低
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
