@@ -67,7 +67,7 @@ dns:
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/15
-  fake-ip-range6: 2001:db8::/32
+  fake-ip-range6: 3fff::/20
   fake-ip-filter: 
     - "rule-set:no-fakeip"
     - "rule-set:chinadomains"
