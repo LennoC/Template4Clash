@@ -41,8 +41,8 @@ p: &p
   interval: 86400
   health-check:
     enable: true
-    url: https://cp.cloudflare.com/generate_204
-    interval: 600
+    url: https://www.gstatic.com/generate_204
+    interval: 300
   proxy: 订阅更新
   header: # 如遇订阅加载不出来请切换ua
       User-Agent:  # 使用注释法由上到下 默认使用第一个
@@ -108,7 +108,7 @@ sniffer:
     HTTP:
       ports: [80, 8080-8880]
     TLS:
-      ports: [443, 5228, 8443]
+      ports: [443, 8443]
     QUIC:
       ports: [443, 8443]
   force-domain:
@@ -188,7 +188,7 @@ dns:
     - 223.6.6.6
     # ----------------
     # 你的本地
-    # 各大路由器默认 DNS（模板示例）
+    # 各大路由器默认 DNS（当然这是模板示例）
     - 192.168.0.1    # TP-Link / Tenda / 部分 Netgear
     - 192.168.1.1    # 华为 / H3C / 三网运营 / Linksys
     - 192.168.3.1    # 华为 / 荣耀
@@ -618,7 +618,7 @@ rules:
   - RULE-SET,YouTube_域,YouTube
   - RULE-SET,YouTube_IP,YouTube,no-resolve
 
-  - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
+  - RULE-SET,GoogleFCM_域,GoogleFCM
 
   - RULE-SET,Google_域,Google
   - RULE-SET,Google_IP,Google,no-resolve
