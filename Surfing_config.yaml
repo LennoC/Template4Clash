@@ -26,7 +26,7 @@ find-process-mode: always
 global-client-fingerprint: chrome
 external-controller: 0.0.0.0:9090 # 切勿修改端口会影响状态栏磁贴
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
-external-ui: "./Web/Zash/"
+external-ui: "./webroot/Zash/"
 secret: "" # 面板访问密码，如在公网访问建议设置
 # —————————
 # ==== Tips
@@ -119,7 +119,7 @@ sniffer:
 
 # 网卡模块
 tun:
-  enable: true
+  enable: false
   device: Meta
   stack: gvisor
   dns-hijack:
