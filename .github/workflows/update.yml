@@ -46,7 +46,7 @@ jobs:
           curl -s -o "666OS_OneSmart_Lite_Config.yaml" \
             "https://raw.githubusercontent.com/666OS/YYDS/main/mihomo/config/OneSmart.yaml"
           curl -s -o "HenryChiao_MihomoAIO_SmartProPlus_Config.yaml" \
-            "https://raw.githubusercontent.com/HenryChiao/MIHOMO_AIO/refs/heads/main/CONFIG/mihomopro.yaml"
+            "https://raw.githubusercontent.com/HenryChiao/MIHOMO_AIO/refs/heads/main/CONFIG/SMART/MihomoSmartProPlus.yaml"
 
           curl -s -o "666OS_MihomoPro_Config.yaml" \
             "https://raw.githubusercontent.com/666OS/YYDS/main/mihomo/config/MihomoPro.yaml"
