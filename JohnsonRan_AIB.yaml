@@ -100,32 +100,32 @@ experimental:
   quic-go-disable-ecn: false
 
 proxy-groups:
-  - {name: 节点选择, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/sub(1).png, type: select, proxies: [自动选择, 香港, 台湾, 日本, 新加坡, 美国, 其他, DIRECT]}
-  - {name: 自动选择, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/lightning(2).png, <<: *fallback}
-  - {name: Speedtest, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/speedtest.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
-  - {name: Emby, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/emby.png, <<: *pr}
-  - {name: AI, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/ChatGPT-green.png, <<: *pr}
-  - {name: Steam, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/steam.png, <<: *pr}
-  - {name: Apple, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/apple.png, type: select, proxies: [美国, 香港, 台湾, 日本, 新加坡, DIRECT]}
-  - {name: Github, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/github.png, <<: *pr}
-  - {name: Telegram, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/telegram(blue1).png, <<: *pr}
-  - {name: Google, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/google(1).png, <<: *pr}
-  - {name: YouTube, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/youtube.png, <<: *pr}
-  - {name: Tracker, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/direct.png, type: select, proxies: [DIRECT, 香港, 台湾, 日本, 新加坡, 美国]}
-  - {name: Porns, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/yuyanyun.png, <<: *pr}
-  - {name: Bilibili, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/bilibili(1).png, type: select, proxies: [DIRECT, 香港, 台湾]}
-  - {name: Microsoft, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/microsoft.png, <<: *pr}
-  - {name: ADBlock, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/ad(6).png, type: select, proxies: [REJECT, DIRECT]}
-  - {name: MATCH, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/shutiao.png, <<: *pr}
+  - {name: 节点选择, icon: https://github.com/JohnsonRan/icon/raw/main/icon/sub(1).png, type: select, proxies: [自动选择, 香港, 台湾, 日本, 新加坡, 美国, 其他, DIRECT]}
+  - {name: 自动选择, icon: https://github.com/JohnsonRan/icon/raw/main/icon/lightning(2).png, <<: *fallback}
+  - {name: Speedtest, icon: https://github.com/JohnsonRan/icon/raw/main/icon/speedtest.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
+  - {name: Emby, icon: https://github.com/JohnsonRan/icon/raw/main/icon/emby.png, <<: *pr}
+  - {name: AI, icon: https://github.com/JohnsonRan/icon/raw/main/icon/ChatGPT-green.png, <<: *pr}
+  - {name: Steam, icon: https://github.com/JohnsonRan/icon/raw/main/icon/steam.png, <<: *pr}
+  - {name: Apple, icon: https://github.com/JohnsonRan/icon/raw/main/icon/apple.png, type: select, proxies: [美国, 香港, 台湾, 日本, 新加坡, DIRECT]}
+  - {name: Github, icon: https://github.com/JohnsonRan/icon/raw/main/icon/github.png, <<: *pr}
+  - {name: Telegram, icon: https://github.com/JohnsonRan/icon/raw/main/icon/telegram(blue1).png, <<: *pr}
+  - {name: Google, icon: https://github.com/JohnsonRan/icon/raw/main/icon/google(1).png, <<: *pr}
+  - {name: YouTube, icon: https://github.com/JohnsonRan/icon/raw/main/icon/youtube.png, <<: *pr}
+  - {name: Tracker, icon: https://github.com/JohnsonRan/icon/raw/main/icon/direct.png, type: select, proxies: [DIRECT, 香港, 台湾, 日本, 新加坡, 美国]}
+  - {name: Porns, icon: https://github.com/JohnsonRan/icon/raw/main/icon/yuyanyun.png, <<: *pr}
+  - {name: Bilibili, icon: https://github.com/JohnsonRan/icon/raw/main/icon/bilibili(1).png, type: select, proxies: [DIRECT, 香港, 台湾]}
+  - {name: Microsoft, icon: https://github.com/JohnsonRan/icon/raw/main/icon/microsoft.png, <<: *pr}
+  - {name: ADBlock, icon: https://github.com/JohnsonRan/icon/raw/main/icon/ad(6).png, type: select, proxies: [REJECT, DIRECT]}
+  - {name: MATCH, icon: https://github.com/JohnsonRan/icon/raw/main/icon/shutiao.png, <<: *pr}
 
 # 分隔,下面是地区分组
-  - {name: 香港, <<: *url-test, filter: "🇭🇰|香港|HK|Hong", icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/Hongkong(2).png}
-  - {name: 美国, <<: *url-test, filter: "🇺🇸|美国|US|United States", icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/US(1).png}
-  - {name: 新加坡, <<: *url-test, filter: "🇸🇬|新加坡|狮|SG|Singapore", icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/singapore(2).png}
-  - {name: 日本, <<: *url-test, filter: "🇯🇵|日本|东京|JP|Japan", icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/Japan(1).png}
-  - {name: 台湾, <<: *url-test, filter: "🇨🇳|🇹🇼|台湾|TW|Tai|Taiwan", icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/taiwan.png}
-  - {name: 低倍率, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/duck(1).png, <<: *fallback, filter: "(?i)(0\\.\\d+)"}
-  - {name: 其他, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/XXAI.png, type: select, include-all-providers: true, exclude-filter: "HK|US|SG|JP|TW|LAN"}
+  - {name: 香港, <<: *url-test, filter: "🇭🇰|香港|HK|Hong", icon: https://github.com/JohnsonRan/icon/raw/main/icon/Hongkong(2).png}
+  - {name: 美国, <<: *url-test, filter: "🇺🇸|美国|US|United States", icon: https://github.com/JohnsonRan/icon/raw/main/icon/US(1).png}
+  - {name: 新加坡, <<: *url-test, filter: "🇸🇬|新加坡|狮|SG|Singapore", icon: https://github.com/JohnsonRan/icon/raw/main/icon/singapore(2).png}
+  - {name: 日本, <<: *url-test, filter: "🇯🇵|日本|东京|JP|Japan", icon: https://github.com/JohnsonRan/icon/raw/main/icon/Japan(1).png}
+  - {name: 台湾, <<: *url-test, filter: "🇨🇳|🇹🇼|台湾|TW|Tai|Taiwan", icon: https://github.com/JohnsonRan/icon/raw/main/icon/taiwan.png}
+  - {name: 低倍率, icon: https://github.com/JohnsonRan/icon/raw/main/icon/duck(1).png, <<: *fallback, filter: "(?i)(0\\.\\d+)"}
+  - {name: 其他, icon: https://github.com/JohnsonRan/icon/raw/main/icon/XXAI.png, type: select, include-all-providers: true, exclude-filter: "HK|US|SG|JP|TW|LAN"}
 
 rules:
   - DST-PORT,6881-6999,ADBlock #FUCK WPS
