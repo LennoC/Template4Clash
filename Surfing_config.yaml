@@ -608,8 +608,7 @@ rules:
   - RULE-SET,YouTube_域,YouTube
   - RULE-SET,YouTube_IP,YouTube,no-resolve
 
-  - DOMAIN,android.apis.google.com,Google
-  - RULE-SET,GoogleFCM_域,GoogleFCM
+  - DOMAIN-KEYWORD,mtalk.google.com,GoogleFCM
 
   - RULE-SET,Google_域,Google
   - RULE-SET,Google_IP,Google,no-resolve
