@@ -24,7 +24,7 @@ tcp-concurrent: true
 log-level: silent
 find-process-mode: always
 global-client-fingerprint: chrome
-external-controller: 0.0.0.0:9090 # 切勿修改端口会影响状态栏磁贴
+external-controller: 0.0.0.0:9090 #修改端口后，如使用磁贴请重新正确设置API
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 external-ui: "./webroot/Zash/"
 secret: "" # 面板访问密码，如在公网访问建议设置
@@ -153,7 +153,7 @@ tun:
 dns:
   enable: true
   ipv6: true
-  listen: 0.0.0.0:1053
+  listen: "[::]:1053"
   enhanced-mode: fake-ip # redir-host
   fake-ip-range: 172.20.0.1/16
   fake-ip-filter:
