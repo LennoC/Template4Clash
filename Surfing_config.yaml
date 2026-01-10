@@ -10,6 +10,7 @@ disable-keep-alive: true
 geodata-mode: false
 geo-auto-update: true
 geo-update-interval: 24
+updatetime: &Time 86400
 geox-url:
   asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
 experimental:
@@ -35,7 +36,7 @@ secret: "" # 面板访问密码，如在公网访问建议设置
 # 健康检查
 p: &p
   type: http
-  interval: 86400
+  interval: *Time
   health-check:
     enable: true
     url: https://www.gstatic.com/generate_204
@@ -202,7 +203,7 @@ proxy_groups: &proxy_groups
 # —————————
 proxy-groups:
   - name: 总模式
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/All.svg"
     type: select
     proxies:
       - ALL·延迟最低
@@ -216,73 +217,73 @@ proxy-groups:
       - ALL·其它地区
       - 🌐 本机·本地直连
   - name: 订阅更新
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Update.svg"
     type: select
     proxies:
       - 🌐 本机·本地直连
       - 总模式
   - name: 小红书
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/XiaoHongShu.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/XiaoHongShu.svg"
     <<: *proxy_groups
   - name: 抖音
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/DouYin.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/DouYin.svg"
     <<: *proxy_groups
   - name: BiliBili
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/BiliBili.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/BiliBili.svg"
     <<: *proxy_groups
   - name: Steam
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Steam.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Steam.svg"
     <<: *proxy_groups
   - name: Apple
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Apple.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Apple.svg"
     <<: *proxy_groups
   - name: Microsoft
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Microsoft.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Microsoft.svg"
     <<: *proxy_groups
   - name: Telegram
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Telegram.svg"
     <<: *proxy_groups
   - name: Discord
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Discord.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Discord.svg"
     <<: *proxy_groups
   - name: Spotify
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Spotify.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Spotify.svg"
     <<: *proxy_groups
   - name: TikTok
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/TikTok.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/TikTok.svg"
     <<: *proxy_groups
   - name: YouTube
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/YouTube.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/YouTube.svg"
     <<: *proxy_groups
   - name: Netflix
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Netflix.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Netflix.svg"
     <<: *proxy_groups
   - name: Google
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Google.svg"
     <<: *proxy_groups
   - name: GoogleFCM
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/GoogleFCM.svg"
     <<: *proxy_groups
   - name: Facebook
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Facebook.svg"
     <<: *proxy_groups
   - name: OpenAI
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/OpenAI.svg"
     <<: *proxy_groups
   - name: GitHub
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GitHub.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/GitHub.svg"
     <<: *proxy_groups
   - name: Twitter(X)
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Twitter.svg"
     <<: *proxy_groups
   - name: DNS连接
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/DNS.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/DNS.svg"
     <<: *proxy_groups
   - name: 漏网之鱼
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/HBASE-copy.svg"
     <<: *proxy_groups
   - name: 广告拦截
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/No-ads-all.svg"
     type: select
     proxies:
       - ⛔️ 禁止·拒绝连接
@@ -290,7 +291,7 @@ proxy-groups:
       - REJECT-DROP
       - PASS
   - name: WebRTC
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/WebRTC.svg"
     type: select
     proxies:
       - ⛔️ 禁止·拒绝连接
@@ -298,47 +299,47 @@ proxy-groups:
       - REJECT-DROP
       - PASS
   - name: ALL·延迟最低
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Return.svg"
     type: url-test
     <<: *A
   - name: ALL·负载均衡
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Return.svg"
     type: load-balance
     strategy: round-robin
     <<: *A
   - name: ALL·故障转移
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Return.svg"
     type: fallback
     <<: *A
   - name: ALL·日本地区
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/JP.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/JP.svg"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     <<: *All
   - name: ALL·中国台湾
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/CN.svg"
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan|taipei)).*$"
     <<: *All
   - name: ALL·香港地区
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HK.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/HK.svg"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     <<: *All
   - name: ALL·美国地区
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/US.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/US.svg"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     <<: *All
   - name: ALL·狮城地区
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Singapore.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Singapore.svg"
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     <<: *All
   - name: ALL·其它地区
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Globe.svg"
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|拒绝|DNS|Ch|网址|售|防失)).*$"
     <<: *All
   - name: 特殊地址
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/User.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/User.svg"
     type: select
     url: https://www.baidu.com/favicon.ico
-    interval: 86400
+    interval: *Time
     proxies:
       - 🌐 本机·本地直连
       - ⛔️ 禁止·拒绝连接
@@ -347,11 +348,11 @@ rule-anchor:
   Local: &Local
     {type: file, behavior: classical, format: text}
   Classical: &Classical
-    {type: http, behavior: classical, format: text, interval: 86400}
+    {type: http, behavior: classical, format: text, interval: *Time}
   IPCIDR: &IPCIDR
-    {type: http, behavior: ipcidr, format: mrs, interval: 86400}
+    {type: http, behavior: ipcidr, format: mrs, interval: *Time}
   Domain: &Domain
-    {type: http, behavior: domain, format: mrs, interval: 86400}
+    {type: http, behavior: domain, format: mrs, interval: *Time}
 # —————————
 # Github Actions 每日自动同步跟随更新
 # 规则提供者: https://github.com/MetaCubeX/meta-rules-dat
@@ -362,7 +363,7 @@ rule-providers:
   WebRTC_端/域:
     <<: *Classical
     path: ./rules/WebRTC.list
-    url: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/rules/WebRTC.list"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/box_bll/clash/rules/WebRTC.list"
   CN_IP:
     <<: *IPCIDR
     path: ./rules/CN_IP.mrs
@@ -403,10 +404,6 @@ rule-providers:
     <<: *Domain
     path: ./rules/Spotify.mrs
     url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/spotify.mrs"
-  Spotify_IP:
-    <<: *IPCIDR
-    path: ./rules/Spotify_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo-lite/geoip/spotify.mrs"
   Facebook_域:
     <<: *Domain
     path: ./rules/Facebook.mrs
@@ -514,7 +511,6 @@ rules:
   - RULE-SET,Netflix_域,Netflix
   - RULE-SET,Netflix_IP,Netflix,no-resolve
   - RULE-SET,Spotify_域,Spotify
-  - RULE-SET,Spotify_IP,Spotify,no-resolve
   - RULE-SET,Facebook_域,Facebook
   - RULE-SET,Facebook_IP,Facebook,no-resolve
   - RULE-SET,OpenAI_域,OpenAI
