@@ -102,7 +102,7 @@ experimental:
 proxy-groups:
   - {name: 节点选择, icon: https://github.com/JohnsonRan/icon/raw/main/icon/sub(1).png, type: select, proxies: [自建, 香港, 台湾, 日本, 新加坡, 美国, 其他, DIRECT]}
   - {name: 自建, icon: https://github.com/JohnsonRan/icon/raw/main/icon/lightning(2).png, type: select, include-all-proxies: true, exclude-filter: "LAN"}
-  - {name: 代理链, icon: https://github.com/JohnsonRan/icon/raw/main/icon/nike.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
+  - {name: 代理链, icon: https://github.com/JohnsonRan/icon/raw/main/icon/nike.png, type: select, proxies: [DIRECT, 香港, 台湾, 日本, 新加坡, 美国]}
   - {name: Speedtest, icon: https://github.com/JohnsonRan/icon/raw/main/icon/speedtest.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
   - {name: Emby, icon: https://github.com/JohnsonRan/icon/raw/main/icon/emby.png, <<: *pr}
   - {name: AI, icon: https://github.com/JohnsonRan/icon/raw/main/icon/ChatGPT-green.png, <<: *pr}
