@@ -22,9 +22,9 @@ experimental:
         value: "en-US,en;q=0.9"
 unified-delay: true
 tcp-concurrent: true
-log-level: silent
+log-level: silent # debug / silent
 find-process-mode: always
-global-client-fingerprint: chrome
+#global-client-fingerprint: chrome 未来官方可能将移除，意义不大
 external-controller: 0.0.0.0:9090 #修改端口后，如使用磁贴请重新正确设置API端口
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 external-ui: "./webroot/Zash/"
@@ -44,8 +44,8 @@ p: &p
   proxy: 订阅更新
   header: # 如遇订阅加载不出来请切换ua
       User-Agent:  # 使用注释法由上到下 默认使用第一个
-        - "clash-verge/v2.2.3"
         - "ClashMetaForAndroid/2.11.2.Meta"
+        - "clash-verge/v2.2.3"
         - "ClashforWindows/0.19.23"
         - "clash.meta"
         - "mihomo"
@@ -121,7 +121,7 @@ tun:
   auto-detect-interface: true
   # 如使用黑白名单这里需排除
   # exclude-package 排除 / include-package 包含
-  include-package:
+  exclude-package:
 #    - com.samsung.android.messaging # 三星专供 ↓ 范围
 #    - com.samsung.android.app.telephonyui
 #    - com.samsung.android.dialer
@@ -139,16 +139,14 @@ tun:
 dns:
   enable: true
   ipv6: true
-  listen: "[::]:1053"
+  listen: 0.0.0.0:1053
   enhanced-mode: fake-ip # redir-host
-#  fake-ip-filter-mode: whitelist # blacklist/whitelist
   fake-ip-range: 172.20.0.1/16
   fake-ip-filter:
     - "RULE-SET:CN_域"
     - "RULE-SET:Private_域"
     - "RULE-SET:GoogleFCM_域"
-    - "+.3gppnetwork.org"
-    - "+.xtracloud.net"
+    - "RULE-SET:自定义规则"
   proxy-server-nameserver:
     - https://1.12.12.12:443/dns-query#🌐 本机·本地直连&h3=false
     - https://120.53.53.53:443/dns-query#🌐 本机·本地直连&h3=false
