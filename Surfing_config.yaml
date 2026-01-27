@@ -32,6 +32,7 @@ secret: "" # 面板访问密码，如在公网访问建议设置
 # —————————
 # ==== Tips
 # 1. 修改配置文件保存时，建议重启服务/重载配置.
+# 2. 如使用 SurfingTile 的配置覆写，当前配置文件的某些字段应保持原有的完整性结构
 # —————————
 # 健康检查
 p: &p
@@ -141,7 +142,7 @@ dns:
   ipv6: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip # redir-host
-  fake-ip-range: 172.20.0.1/16
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "RULE-SET:CN_域"
     - "RULE-SET:Private_域"
