@@ -10,9 +10,9 @@
 # >>=====================================<<
 # 名称: OneTouch 一键连
 # 地址: https://github.com/666OS/YYDS
-# 版本: v26.1.0
+# 版本: v26.1.1
 # 作者: YYDS666
-# 更新: 2026 年 1 月 9 日
+# 更新: 2026 年 1 月 30 日
 # 频道: https://t.me/Pinched666
 # 描述: 一键连纯净版
 
@@ -63,7 +63,6 @@ tcp-concurrent: true
 log-level: warning
 bind-address: '*'
 find-process-mode: 'always'
-global-client-fingerprint: chrome
 keep-alive-interval: 15
 keep-alive-idle: 600
 
@@ -185,7 +184,7 @@ rules:
   - RULE-SET,SocialMediaIP,社交平台,no-resolve
   - RULE-SET,NetflixIP,国际媒体,no-resolve
   - RULE-SET,ProxyIP,一键连,no-resolve
-  - RULE-SET,ChinaIP,国内流量,no-resolve
+  - RULE-SET,ChinaIP,国内流量
   # 兜底规则
   - MATCH,一键连
 
