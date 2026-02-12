@@ -108,6 +108,7 @@ sniffer:
     - "Mijia Cloud"
 # —————————
 # 网卡模块
+# 如需使用 建议先阅读文档：https://wiki.metacubex.one/config/inbound/tun/
 tun:
   enable: false
   device: Meta
