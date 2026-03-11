@@ -65,13 +65,7 @@ dns:
   cache-algorithm: arc
   ipv6: true
   listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
-  fake-ip-range6: 2800:1145:1419:1981:810::/96
-  fake-ip-filter: 
-    - "rule-set:no-fakeip"
-    - "rule-set:chinadomains"
-    - "rule-set:cn_site"
+  enhanced-mode: redir-host
   respect-rules: true
   nameserver:
     - https://8.8.8.8/dns-query
@@ -102,9 +96,8 @@ experimental:
 proxy-groups:
   - {name: 节点选择, icon: https://github.com/JohnsonRan/icon/raw/main/icon/sub(1).png, type: select, proxies: [自建, 香港, 台湾, 日本, 新加坡, 美国, 其他, DIRECT]}
   - {name: 自建, icon: https://github.com/JohnsonRan/icon/raw/main/icon/lightning(2).png, type: select, include-all-proxies: true, exclude-filter: "LAN"}
-  - {name: 代理链, icon: https://github.com/JohnsonRan/icon/raw/main/icon/nike.png, type: select, proxies: [DIRECT, 香港, 台湾, 日本, 新加坡, 美国]}
+  - {name: Massive Download, icon: https://github.com/JohnsonRan/icon/raw/main/icon/nike.png, type: select, proxies: [DIRECT, 香港, 台湾, 日本, 新加坡, 美国]}
   - {name: Speedtest, icon: https://github.com/JohnsonRan/icon/raw/main/icon/speedtest.png, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国]}
-  - {name: Emby, icon: https://github.com/JohnsonRan/icon/raw/main/icon/emby.png, <<: *pr}
   - {name: AI, icon: https://github.com/JohnsonRan/icon/raw/main/icon/ChatGPT-green.png, <<: *pr}
   - {name: Steam, icon: https://github.com/JohnsonRan/icon/raw/main/icon/steam.png, <<: *pr}
   - {name: Apple, icon: https://github.com/JohnsonRan/icon/raw/main/icon/apple.png, type: select, proxies: [节点选择, 美国, 香港, 台湾, 日本, 新加坡, DIRECT]}
@@ -154,7 +147,7 @@ rules:
   - RULE-SET,github,Github
   - RULE-SET,microsoft,Microsoft
   - RULE-SET,bahamut,台湾
-  - RULE-SET,emby,Emby
+  - RULE-SET,emby,Massive Download
   - RULE-SET,steamcn,DIRECT
   - RULE-SET,steam,Steam
   - RULE-SET,gfwlist,节点选择
@@ -186,7 +179,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/JohnsonRan/CRules/master/rules/reject.txt"
   emby:
     <<: *classicaltxt
-    url: "https://raw.githubusercontent.com/Repcz/Tool/X/Surge/Rules/Emby.list"
+    url: "https://raw.githubusercontent.com/JohnsonRan/CRules/master/rules/Emby.txt"
   ai:
     <<: *mrs
     url: "https://raw.githubusercontent.com/JohnsonRan/CRules/mihomo/rules/AIs_merged.mrs"
