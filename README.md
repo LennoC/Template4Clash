@@ -1,3 +1,6 @@
+# STOPPED 停止维护
+**推荐使用更好的同类项目** [MIHOMO_YAMLS](https://github.com/HenryChiao/mihomo_yamls)
+
 # Template4Clash
 
 适用于Clash Meta/Mihomo的配置收集
